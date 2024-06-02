@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
-<project name="CarCrashX" default="jarfile">
+<project name="TrabalhoSecreto" default="jarfile">
 
     <!-- Initialize build properties  -->
     <target name="init" description="Initializes properties">
-        <property name="project.name" value="CarCrashX" />
+        <property name="project.name" value="TrabalhoSecreto" />
         <property name="src.dir" value="src" />
         <property name="main.class" value="io.codeforall.bootcamp.CarCrashX" />
         <property name="build.dir" value="build" />
