@@ -5,6 +5,7 @@
     <target name="init" description="Initializes properties">
         <property name="project.name" value="TrabalhoSecreto" />
         <property name="src.dir" value="src" />
+        <property name="images.dir" value="resources" />
         <property name="main.class" value="Main" />
         <property name="build.dir" value="build" />
         <property name="etc.dir" value="etc"/>
@@ -27,7 +28,7 @@
 
     <!-- Compiles the source code -->
     <target name="compile" description="Compiles the source code" depends="prepare">
-        <javac srcdir="${src.dir}" destdir="${classes.dir}">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" target="1.8" source="1.8">
             <classpath refid="classpath"/>
         </javac>
     </target>
@@ -36,6 +37,7 @@
     <target name="jarfile" description="Archives the code" depends="compile">
         <jar destfile="${build.dir}/${project.name}.jar" basedir="${classes.dir}" manifest="${etc.dir}/MANIFEST.MF">
             <zipgroupfileset dir="${lib.dir}" includes="*.jar"/>
+            <fileset dir="${images.dir}"/>
         </jar>
     </target>
 
