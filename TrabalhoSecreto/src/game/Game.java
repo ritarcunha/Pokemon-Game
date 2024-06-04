@@ -97,7 +97,16 @@ public class Game {
 
         }
 
+        Sound sound=new Sound();
 
+        public void playMusic(int i){
+            sound.setFile(i);
+            sound.play();
+            sound.loop();
+        }
+        public void stopMusic(){
+            sound.stop();
+        }
 
 
 
