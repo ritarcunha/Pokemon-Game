@@ -2,9 +2,10 @@ package game.Enemies;
 
 import java.awt.*;
 
-import com.sun.javafx.scene.layout.region.BackgroundPositionConverter;
+
 import game.Game;
 import game.Player.Position;
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class TeamRocket {
@@ -18,6 +19,8 @@ public class TeamRocket {
         this.npcName=npcName;
         Rectangle rectNPC= new Rectangle(pos.getCol()*Game.DISTANCE+((Game.DISTANCE-NPCSIZE)/2),pos.getRow()*Game.DISTANCE+((Game.DISTANCE-NPCSIZE)/2),NPCSIZE,NPCSIZE);
         rectNPC.draw();
+        rectNPC.setColor(Color.RED);
+        rectNPC.fill();
     }
 
     public Position getPosTR(){
