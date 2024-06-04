@@ -1,6 +1,6 @@
 package game;
 
-public class LinkedList {
+public class LinkedList<T> {
 
     private Node head;
     private int length = 0;
@@ -17,7 +17,7 @@ public class LinkedList {
      * Adds an element to the end of the list
      * @param data the element to add
      */
-    public void add(Object data)  {
+    public void add(T data)  {
 
         Node node = new Node(data);
         Node iterator = head;
@@ -34,7 +34,7 @@ public class LinkedList {
      * @param index the index of the element
      * @return the element
      */
-    public Object get(int index) {
+    public T get(int index) {
         Node iterator = head.getNext();
         while (iterator != null){
             if (index == 0) {
@@ -51,7 +51,7 @@ public class LinkedList {
      * @param data element to search for
      * @return the index of the element, or -1 if the list does not contain element
      */
-    public int indexOf(Object data) {
+    public int indexOf(T data) {
         int i = 0;
         Node iterator = head.getNext();
         while (iterator != null) {
@@ -68,7 +68,7 @@ public class LinkedList {
      * @param data the element to remove
      * @return true if element was removed
      */
-    public boolean remove(Object data) {
+    public boolean remove(T data) {
         Node iterator = head;
         while (iterator.getNext() != null) {
             if (iterator.getNext().getData().equals(data)) {
@@ -83,19 +83,19 @@ public class LinkedList {
 
     private class Node {
 
-        private Object data;
+        private T data;
         private Node next;
 
-        public Node(Object data) {
+        public Node(T data) {
             this.data = data;
             next = null;
         }
 
-        public Object getData() {
+        public T getData() {
             return data;
         }
 
-        public void setData(Object data) {
+        public void setData(T data) {
             this.data = data;
         }
 
