@@ -31,23 +31,23 @@ public class Player {
     public boolean checkMovement(Direction direction) {
         switch (direction) {
             case RIGHT:
-                if (pos.getCol()<game.getField()[0].length-1 && game.getField()[pos.getRow()][(pos.getCol()+1)] == "block") {
+                if (pos.getCol() < game.getField()[0].length - 1 && game.getField()[pos.getRow()][(pos.getCol() + 1)] == "block") {
                     return true;
                 }
                 break;
             case LEFT:
-                if (pos.getCol()>0 && game.getField()[pos.getRow()][pos.getCol()-1] == "block") {
+                if (pos.getCol() > 0 && game.getField()[pos.getRow()][pos.getCol() - 1] == "block") {
                     return true;
                 }
                 break;
             case UP:
-                if (pos.getRow()>0 && game.getField()[pos.getRow()- 1][pos.getCol()] == "block") {
+                if (pos.getRow() > 0 && game.getField()[pos.getRow() - 1][pos.getCol()] == "block") {
                     return true;
                 }
                 break;
 
             case DOWN:
-                if (pos.getRow()<game.getField().length-1 && game.getField()[pos.getRow()+ 1][pos.getCol() ] == "block") {
+                if (pos.getRow() < game.getField().length - 1 && game.getField()[pos.getRow() + 1][pos.getCol()] == "block") {
                     return true;
                 }
                 break;
@@ -57,34 +57,55 @@ public class Player {
     }
 
 
-        public void changeRight() {
-            if (checkMovement(Direction.RIGHT)) {
-                rectPlayer.translate(Game.DISTANCE, 0);
-                pos.setCol(rectPlayer.getX() / Game.DISTANCE);
-            }
+    public void changeRight() {
+        if (checkMovement(Direction.RIGHT)) {
+            rectPlayer.translate(Game.DISTANCE, 0);
+            pos.setCol(rectPlayer.getX() / Game.DISTANCE);
         }
-        public void changeLeft () {
-            if (checkMovement(Direction.LEFT)) {
-                rectPlayer.translate(-Game.DISTANCE, 0);
-                pos.setCol(rectPlayer.getX() / Game.DISTANCE);
-            }
-        }
-
-        public void changeUp () {
-
-            if (checkMovement(Direction.UP)) {
-                rectPlayer.translate(0, -Game.DISTANCE);
-                pos.setRow(rectPlayer.getY() / Game.DISTANCE);
-            }
-        }
-
-        public void changeDown () {
-            if (checkMovement(Direction.DOWN)) {
-                rectPlayer.translate(0, Game.DISTANCE);
-                pos.setRow(rectPlayer.getY() / Game.DISTANCE);
-            }
-        }
-
-
     }
+
+    public void changeLeft() {
+        if (checkMovement(Direction.LEFT)) {
+            rectPlayer.translate(-Game.DISTANCE, 0);
+            pos.setCol(rectPlayer.getX() / Game.DISTANCE);
+        }
+    }
+
+    public void changeUp() {
+
+        if (checkMovement(Direction.UP)) {
+            rectPlayer.translate(0, -Game.DISTANCE);
+            pos.setRow(rectPlayer.getY() / Game.DISTANCE);
+        }
+    }
+
+    public void changeDown() {
+        if (checkMovement(Direction.DOWN)) {
+            rectPlayer.translate(0, Game.DISTANCE);
+            pos.setRow(rectPlayer.getY() / Game.DISTANCE);
+        }
+    }
+
+    //aqui vai chekar a colisao e caso exista
+    public boolean colision() {
+
+        for (int i = 0; i < game.getLink1().size(); i++) {
+            if (pos.getCol() + 1 == getTR(i).getPosTR().getCol() && pos.getRow() == getTR(i).getPosTR().getRow()) {
+                return true;
+
+            } else if (pos.getCol() - 1 == getTR(i).getPosTR().getCol() && pos.getRow() == getTR(i).getPosTR().getRow()) {
+                return true;
+
+            } else if (pos.getRow() + 1 == getTR(i).getPosTR().getRow() && pos.getCol() == getTR(i).getPosTR().getCol()) {
+                return true;
+
+            } else if (pos.getRow() - 1 == getTR(i).getPosTR().getRow() && pos.getCol() == getTR(i).getPosTR().getCol()) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+}
 

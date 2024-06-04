@@ -27,10 +27,10 @@ public class Game {
                                   {"block", "block", "TR", "block", "block", "tree", "block", "block", "tree","block", "block" },
                                   {"block", "block", "block", "block", "block", "block", "block", "block", "tree","block", "TR" }};
                           //criamos uma matriz para o campo de jogo
-                           //field.length- da me o numero de arrays da matriz e de rows
-                            //field[0].length- da me o numero de elemnetos de cada um dos array
-                             //field [i][j].length- da me o comprimento da string de uma determinada posição
-                               //field[i].length*field.length-da me o numero total de elementos
+                          //field.length- da me o numero de arrays da matriz e de rows
+                          //field[0].length- da me o numero de elemnetos de cada um dos array
+                          //field [i][j].length- da me o comprimento da string de uma determinada posição
+                          //field[i].length*field.length-da me o numero total de elementos
 
     public String [] [] getField(){
         return this.field;
@@ -78,23 +78,22 @@ public class Game {
 
           }
 
-    public void init(){
-        Player p1= new Player(new Position(0,0), "Mon",this);
+    public void init() {
+        Player p1 = new Player(new Position(0, 0), "Mon", this);
         new Handler(p1);
-        this.p1.draw();
-        while(true){
+
+
+        while (true) {
+            if (p1.colision()) {
+                this.p1.draw();
+            }
+
         }
-
-
     }
         public LinkedList getLink1 (){
             return this.link1;
         }
 
-        public void initBattle(){
-                //if colision:
-
-
         }
 
 
@@ -104,4 +103,5 @@ public class Game {
 
 
 
-}
+
+
