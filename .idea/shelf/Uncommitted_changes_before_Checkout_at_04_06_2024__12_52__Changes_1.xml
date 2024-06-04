@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_04_06_2024,_12_52_[Changes]1" date="1717502082618" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_04_06_2024,_12_52_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 04/06/2024, 12:52 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="TrabalhoSecreto/out/production/TrabalhoSecreto/Main.class" />
+    <option name="AFTER_PATH" value="TrabalhoSecreto/out/production/TrabalhoSecreto/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_04_06_2024,_12_52_[Changes]1/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="TrabalhoSecreto/out/production/TrabalhoSecreto/game/Game.class" />
+    <option name="AFTER_PATH" value="TrabalhoSecreto/out/production/TrabalhoSecreto/game/Game.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_04_06_2024,_12_52_[Changes]1/Game.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OMelhorJogo/game/Sound.class" />
+    <option name="AFTER_PATH" value="out/production/OMelhorJogo/game/Sound.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_04_06_2024,_12_52_[Changes]1/Sound.class" />
+  </binary>
+</changelist>
