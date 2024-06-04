@@ -13,6 +13,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Game {
 
     public final static int DISTANCE=30;
+    private Sound sound = new Sound();
     LinkedList link1= new LinkedList();
 
     Picture p1= new Picture (0, 0, "resources/batalha.png");
@@ -79,6 +80,9 @@ public class Game {
           }
 
     public void init(){
+        sound.setFile("/Users/codecadet/Desktop/OMelhorJogoLocal/TrabalhoSecreto/src/game/Sound/Bicycle.wav");
+        sound.play();
+
         Player p1= new Player(new Position(0,0), "Mon",this);
         new Handler(p1);
         this.p1.draw();
@@ -97,15 +101,8 @@ public class Game {
 
         }
 
-        Sound sound=new Sound();
 
-        public void playMusic(int i){
-            sound.setFile(i);
-            sound.play();
-            sound.loop();
-        }
-        public void stopMusic(){
-            sound.stop();
+
         }
 
 
@@ -113,4 +110,3 @@ public class Game {
 
 
 
-}

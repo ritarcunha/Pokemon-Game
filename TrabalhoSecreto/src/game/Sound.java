@@ -1,43 +1,39 @@
 package game;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import java.net.URL;
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Sound {
-    Clip clip;
 
-    URL soundURL[]=new URL[10];
+    private Clip clip;
 
-    public Sound(){
-        soundURL[0]=getClass().getResource("/Sound/town1.wav");
-        soundURL[1]=getClass().getResource("/Sound/town1.wav");
-    }
-
-    public void setFile(int i){
+    public void setFile(String filePath) {
         try {
-
-            AudioInputStream ais= AudioSystem.getAudioInputStream(soundURL[i]);
-            clip=AudioSystem.getClip();
-            clip.open(ais);
-            System.out.println("caquinha musical");
-        }catch (Exception e){
-            System.out.println("coco");
+            File soundFile = new File(filePath);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundFile);
+            clip = AudioSystem.getClip();
+            clip.open(audioStream);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
         }
-
     }
 
-    public void play(){
-        clip.start();
-
+    public void play() {
+        if (clip != null) {
+            clip.start();
+        }
     }
 
-    public void loop(){
-
-        clip.loop(clip.LOOP_CONTINUOUSLY);
+    public void stop() {
+        if (clip != null) {
+            clip.stop();
+        }
     }
-    public void stop(){
-    clip.stop();
+
+    public void loop() {
+        if (clip != null) {
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        }
     }
 }

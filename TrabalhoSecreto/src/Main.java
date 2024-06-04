@@ -6,6 +6,5 @@ public class Main {
         Game game1= new Game();
         game1.draw();
         game1.init();
-        game1.playMusic(0);
     }
 }
