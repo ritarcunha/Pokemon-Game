@@ -3,6 +3,7 @@ package game.Enemies;
 import java.awt.*;
 
 
+import game.BattleElements;
 import game.Game;
 import game.Player.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
@@ -13,6 +14,7 @@ public class TeamRocket {
     private Rectangle rectNPC;
     private String npcName;
     private final int NPCSIZE=Game.DISTANCE *3/4;
+    private BattleElements element;
 
     public TeamRocket(Position pos,String npcName){//quando criarmos uma instancia do TeamRocket temos de definir uma posição diferente (a outra ponta da grid)
         this.pos=pos;
@@ -21,12 +23,27 @@ public class TeamRocket {
         rectNPC.draw();
         rectNPC.setColor(Color.RED);
         rectNPC.fill();
+        this.element=element;
     }
 
     public Position getPosTR(){
         return this.pos;
     }
 
-    //public Position
+    public BattleElements getElement (){
+        int randomNumber = (int) (Math.random() * 3) + 1;
+        if(randomNumber==1){
+            return BattleElements.EARTH;
+        }
+        else if (randomNumber==2) {
+            return BattleElements.FIRE;
+        }
+        else{
+            return BattleElements.WATER;
+        }
+
+    }
+
+
 
 }
