@@ -13,6 +13,8 @@ public class Player {
 
     private Game game;
 
+    private int numberOfLifes;
+
     private final int PLAYERSIZE = Game.DISTANCE * 2 / 3;
 
     public Player(Position pos, String name, Game game) {
@@ -21,6 +23,7 @@ public class Player {
         this.rectPlayer = new Rectangle(pos.getCol() + ((Game.DISTANCE - PLAYERSIZE) / 2), pos.getRow() + ((Game.DISTANCE - PLAYERSIZE) / 2), PLAYERSIZE, PLAYERSIZE);
         rectPlayer.draw();
         this.game = game;
+        this.numberOfLifes=3;
     }
 
     public TeamRocket getTR(int i) {

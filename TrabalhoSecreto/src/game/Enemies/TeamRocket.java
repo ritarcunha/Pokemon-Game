@@ -16,7 +16,9 @@ public class TeamRocket {
     private final int NPCSIZE=Game.DISTANCE *3/4;
     private BattleElements element;
 
-    public TeamRocket(Position pos,String npcName){//quando criarmos uma instancia do TeamRocket temos de definir uma posição diferente (a outra ponta da grid)
+    private int numberOfLifes;
+
+    public TeamRocket(Position pos,String npcName,int numberOfLifes){//quando criarmos uma instancia do TeamRocket temos de definir uma posição diferente (a outra ponta da grid)
         this.pos=pos;
         this.npcName=npcName;
         Rectangle rectNPC= new Rectangle(pos.getCol()*Game.DISTANCE+((Game.DISTANCE-NPCSIZE)/2),pos.getRow()*Game.DISTANCE+((Game.DISTANCE-NPCSIZE)/2),NPCSIZE,NPCSIZE);
@@ -24,6 +26,7 @@ public class TeamRocket {
         rectNPC.setColor(Color.RED);
         rectNPC.fill();
         this.element=element;
+        this.numberOfLifes=3;
     }
 
     public Position getPosTR(){
