@@ -14,16 +14,17 @@ public class MouseHandler implements org.academiadecodigo.simplegraphics.mouse.M
 
     public MouseHandler() {
         mouse = new Mouse(this);
+        createKeyboardEvents();
     }
 
     public void createKeyboardEvents() {
         MouseEvent mouseEventClick = new MouseEvent(0,0,MouseEventType.MOUSE_CLICKED);
         mouse.addEventListener(MouseEventType.MOUSE_CLICKED);
-
     }
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
+        System.out.println("Rato");
 
     }
 

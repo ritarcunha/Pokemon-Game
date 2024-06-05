@@ -2,6 +2,7 @@ package game;
 
 import Background.Field;
 import game.Enemies.Arada;
+import game.Handler.MouseHandler;
 import game.Handler.PlayerHandler;
 import game.Player.Player;
 import game.Player.Position;
@@ -122,6 +123,7 @@ public class Game {
         drawText();
         Player p1= new Player(new Position(0,0), "Mon",this);
         new PlayerHandler(p1);
+        new MouseHandler();
 
 
         while (true) {
