@@ -86,7 +86,7 @@ public class Player {
         }
     }
 
-    //aqui vai chekar a colisao e caso exista
+    //aqui vai chekar a colisao e caso exista come
     public boolean colision() {
 
         for (int i = 0; i < game.getLink1().size(); i++) {

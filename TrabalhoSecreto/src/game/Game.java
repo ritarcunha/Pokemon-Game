@@ -6,6 +6,7 @@ import game.Player.Handler;
 import game.Player.Player;
 import game.Player.Position;
 import game.Enemies.TeamRocket;
+import game.Sound.Sound;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
@@ -18,6 +19,7 @@ public class Game {
 
     public final static int DISTANCE = 30;
     private Sound sound = new Sound();
+
     LinkedList link1 = new LinkedList();
 
 
@@ -118,7 +120,6 @@ public class Game {
 
 
     public void init() throws InterruptedException {
-        sound.setFile("/Users/codecadet/Desktop/OMelhorJogoLocal/TrabalhoSecreto/src/game/Sound/Bicycle.wav");
         sound.play();
         drawText();
         Player p1= new Player(new Position(0,0), "Mon",this);
@@ -135,16 +136,10 @@ public class Game {
 
         }
     }
-        public LinkedList getLink1 (){
-            return this.link1;
-        }
-
-    //
-
-
-
-
-        }
+    public LinkedList getLink1 (){
+        return this.link1;
+    }
+}
 
 
 
