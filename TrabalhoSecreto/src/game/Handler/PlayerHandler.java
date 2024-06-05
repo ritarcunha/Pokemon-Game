@@ -1,17 +1,18 @@
-package game.Player;
+package game.Handler;
 
+import game.Player.Player;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
-    public class Handler implements KeyboardHandler {
+    public class PlayerHandler implements KeyboardHandler {
 
         public Keyboard keyboard;
         public Player player;
 
 
-        public Handler(Player player) {
+        public PlayerHandler(Player player) {
             this.player = player;
             keyboard = new Keyboard(this);
             createKeyboardEvents();

@@ -2,7 +2,7 @@ package game;
 
 import Background.Field;
 import game.Enemies.Arada;
-import game.Player.Handler;
+import game.Handler.PlayerHandler;
 import game.Player.Player;
 import game.Player.Position;
 import game.Enemies.TeamRocket;
@@ -12,8 +12,6 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
-
-import java.awt.*;
 
 public class Game {
 
@@ -123,7 +121,7 @@ public class Game {
         sound.play();
         drawText();
         Player p1= new Player(new Position(0,0), "Mon",this);
-        new Handler(p1);
+        new PlayerHandler(p1);
 
 
         while (true) {
