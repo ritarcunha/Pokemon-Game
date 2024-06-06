@@ -30,6 +30,10 @@ public class Player {
         return (TeamRocket) game.getLink1().get(i);
     }
 
+    public int getNumberOfLifes(){
+        return this.numberOfLifes;
+    }
+
 
     public boolean checkMovement(Direction direction) {
         switch (direction) {
@@ -108,6 +112,11 @@ public class Player {
 
         }
         return false;
+    }
+
+    public void battle(){
+
+
     }
 
 }

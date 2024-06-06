@@ -26,11 +26,15 @@ public class TeamRocket {
         rectNPC.setColor(Color.RED);
         rectNPC.fill();
         this.element=element;
-        this.numberOfLifes=3;
+        this.numberOfLifes=numberOfLifes;
     }
 
     public Position getPosTR(){
         return this.pos;
+    }
+
+    public int getNumberOfLifes(){
+        return this.numberOfLifes;
     }
 
     public BattleElements getElement (){
@@ -46,6 +50,7 @@ public class TeamRocket {
         }
 
     }
+
 
 
 

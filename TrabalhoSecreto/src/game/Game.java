@@ -21,6 +21,7 @@ public class Game {
     private Sound sound = new Sound();
 
     LinkedList link1 = new LinkedList();
+    //Player p11= new Player(new Position(0,0), "Mon",this);
 
 
 
@@ -106,8 +107,6 @@ public class Game {
 
 
 
-
-
     public void drawExclamationpoint() {
         Ellipse c1 = new Ellipse(250,300, 60, 60);
         c1.draw();
@@ -139,7 +138,42 @@ public class Game {
     public LinkedList getLink1 (){
         return this.link1;
     }
+
+    public TeamRocket getTeamRocketfromList (int i){ //posso fazer isto arada?
+               return (TeamRocket) link1.get(i);
+
+    }
+
+
+
+        public void battle (BattleElements battleElement1, BattleElements battleElement2 ){
+            int victoriesP=0;
+            int victoriesTr=0;
+            int rounds=0;
+
+
+
+            while(rounds>3){
+
+            }
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
 }
+
+
 
 
 
