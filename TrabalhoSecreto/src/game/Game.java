@@ -39,7 +39,7 @@ public class Game {
             {"block", "tree", "block", "block", "block", "block", "block", "TR", "block", "block", "block"},
             {"block", "block", "block", "block", "TR", "block", "block", "block", "block", "block", "tree"},
             {"tree", "block", "block", "block", "block", "block", "tree", "block", "block", "block", "block"},
-            {"block", "block", "TR", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
             {"block", "block", "block", "block", "block", "tree", "block", "block", "block", "block", "block"},
             {"block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
             {"block", "block", "TR", "block", "block", "tree", "block", "block", "tree", "block", "block"},
@@ -75,11 +75,10 @@ public class Game {
 
     public void drawTree(int j, int i) {
         Rectangle rectangle = new Rectangle(j * DISTANCE, i * DISTANCE, DISTANCE, DISTANCE);
-        Rectangle rectangle1 = new Rectangle(j * DISTANCE, i * DISTANCE, 20, 20);
+        Picture tree = new Picture(j * DISTANCE, i * DISTANCE, "resources/tree.png");
         rectangle.setColor(Field.lIGHTBROWN);
-        rectangle1.setColor(Color.GREEN);
         rectangle.fill();
-        rectangle1.fill();
+        tree.draw();
 
 
     }

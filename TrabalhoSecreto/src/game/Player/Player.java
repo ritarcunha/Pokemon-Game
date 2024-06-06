@@ -4,26 +4,35 @@ import game.Enemies.TeamRocket;
 import game.Game;
 import game.LinkedList;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player {
 
+    private Picture spritePlayer;
+    private int animationFrame = 0;
+    private final String[] upImages = {"resources/playerMoveChar/u1.png", "resources/playerMoveChar/u2.png"};
+    private final String[] downImages = {"resources/playerMoveChar/d1.png", "resources/playerMoveChar/d2.png"};
+    private final String[] leftImages = {"resources/playerMoveChar/l1.png", "resources/playerMoveChar/l2.png"};
+    private final String[] rightImages = {"resources/playerMoveChar/r1.png", "resources/playerMoveChar/r2.png"};
     private Position pos;
     private String name;
-    private Rectangle rectPlayer;
+   // private Rectangle rectPlayer;
 
     private Game game;
 
     private int numberOfLifes;
 
-    private final int PLAYERSIZE = Game.DISTANCE * 2 / 3;
+    private final int PLAYERSIZE = Game.DISTANCE * 3 / 2;
 
     public Player(Position pos, String name, Game game) {
         this.pos = pos;
         this.name = name;
-        this.rectPlayer = new Rectangle(pos.getCol() + ((Game.DISTANCE - PLAYERSIZE) / 2), pos.getRow() + ((Game.DISTANCE - PLAYERSIZE) / 2), PLAYERSIZE, PLAYERSIZE);
-        rectPlayer.draw();
+        this.spritePlayer = new Picture(pos.getCol() * Game.DISTANCE + ((Game.DISTANCE - PLAYERSIZE) / 2),
+                pos.getRow() * Game.DISTANCE + ((Game.DISTANCE - PLAYERSIZE) / 2),
+                downImages[0]); // Initial image facing down
+        spritePlayer.draw();
         this.game = game;
-        this.numberOfLifes=3;
+        this.numberOfLifes = 3;
     }
 
     public TeamRocket getTR(int i) {
@@ -64,34 +73,40 @@ public class Player {
         }
         return false;
     }
-
+    private void updateSprite(String[] images) {
+        spritePlayer.load(images[animationFrame]);
+        animationFrame = (animationFrame + 1) % images.length;
+    }
 
     public void changeRight() {
         if (checkMovement(Direction.RIGHT)) {
-            rectPlayer.translate(Game.DISTANCE, 0);
-            pos.setCol(rectPlayer.getX() / Game.DISTANCE);
+            spritePlayer.translate(Game.DISTANCE, 0);
+            pos.setCol((spritePlayer.getX() + PLAYERSIZE / 2) / Game.DISTANCE);
+            updateSprite(rightImages);
         }
     }
 
     public void changeLeft() {
         if (checkMovement(Direction.LEFT)) {
-            rectPlayer.translate(-Game.DISTANCE, 0);
-            pos.setCol(rectPlayer.getX() / Game.DISTANCE);
+            spritePlayer.translate(-Game.DISTANCE, 0);
+            pos.setCol((spritePlayer.getX() + PLAYERSIZE / 2) / Game.DISTANCE);
+            updateSprite(leftImages);
         }
     }
 
     public void changeUp() {
-
         if (checkMovement(Direction.UP)) {
-            rectPlayer.translate(0, -Game.DISTANCE);
-            pos.setRow(rectPlayer.getY() / Game.DISTANCE);
+            spritePlayer.translate(0, -Game.DISTANCE);
+            pos.setRow((spritePlayer.getY() + PLAYERSIZE / 2) / Game.DISTANCE);
+            updateSprite(upImages);
         }
     }
 
     public void changeDown() {
         if (checkMovement(Direction.DOWN)) {
-            rectPlayer.translate(0, Game.DISTANCE);
-            pos.setRow(rectPlayer.getY() / Game.DISTANCE);
+            spritePlayer.translate(0, Game.DISTANCE);
+            pos.setRow((spritePlayer.getY() + PLAYERSIZE / 2) / Game.DISTANCE);
+            updateSprite(downImages);
         }
     }
 
