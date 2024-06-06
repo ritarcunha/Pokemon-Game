@@ -25,8 +25,10 @@ public class MouseHandler implements org.academiadecodigo.simplegraphics.mouse.M
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        if(Game.inBattle)
-            System.out.println("Rato");
+        //if(Game.inBattle) {
+            System.out.println( "X " + mouseEvent.getX() + " Y " + mouseEvent.getY());
+        //}
+
 
     }
 

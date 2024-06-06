@@ -38,7 +38,7 @@ public class Game {
             {"block", "tree", "block", "block", "block", "block", "block", "TR", "block", "block", "block"},
             {"block", "block", "block", "block", "TR", "block", "block", "block", "block", "block", "tree"},
             {"tree", "block", "block", "block", "block", "block", "tree", "block", "block", "block", "block"},
-            {"block", "block", "TR", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
             {"block", "block", "block", "block", "block", "tree", "block", "block", "block", "block", "block"},
             {"block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
             {"block", "block", "TR", "block", "block", "tree", "block", "block", "tree", "block", "block"},

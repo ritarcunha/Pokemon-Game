@@ -16,7 +16,7 @@ public class Player {
     private final String[] rightImages = {"resources/playerMoveChar/r1.png", "resources/playerMoveChar/r2.png"};
     private Position pos;
     private String name;
-    private Rectangle rectPlayer;
+   // private Rectangle rectPlayer;
 
     private Game game;
 
