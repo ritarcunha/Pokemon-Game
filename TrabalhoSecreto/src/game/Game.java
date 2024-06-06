@@ -2,7 +2,8 @@ package game;
 
 import Background.Field;
 import game.Enemies.Arada;
-import game.Player.Handler;
+import game.Handler.MouseHandler;
+import game.Handler.PlayerHandler;
 import game.Player.Player;
 import game.Player.Position;
 import game.Enemies.TeamRocket;
@@ -13,15 +14,21 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 
-import java.awt.*;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Game {
 
     public final static int DISTANCE = 30;
+    public static boolean inBattle = false;
     private Sound sound = new Sound();
 
-    LinkedList link1 = new LinkedList();
+
+
     //Player p11= new Player(new Position(0,0), "Mon",this);
+
+    LinkedList<TeamRocket> link1 = new LinkedList<>();
+
 
 
 
@@ -122,27 +129,27 @@ public class Game {
         sound.play();
         drawText();
         Player p1= new Player(new Position(0,0), "Mon",this);
-        new Handler(p1);
-
-
+        new PlayerHandler(p1);
+        new MouseHandler();
         while (true) {
             if (p1.colision()) {
 
                 drawExclamationpoint();
                 Thread.sleep(700);//ponto de exclamaçao como animacao
+                inBattle = true;
                 this.p1.draw();
             }
 
         }
     }
-    public LinkedList getLink1 (){
+    public LinkedList<TeamRocket> getLink1 (){
         return this.link1;
     }
 
-    public TeamRocket getTeamRocketfromList (int i){ //posso fazer isto arada?
-               return (TeamRocket) link1.get(i);
 
-    }
+
+
+
 
 
 
