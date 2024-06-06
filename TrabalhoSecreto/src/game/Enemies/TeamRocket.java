@@ -31,8 +31,6 @@ public class TeamRocket {
                 pos.getRow() * Game.DISTANCE + ((Game.DISTANCE - NPCSIZE) / 2),
                 TR);
         NPC.draw();
-        this.element = element;
-
         this.numberOfLifes = numberOfLifes;
     }
 
@@ -56,8 +54,9 @@ public class TeamRocket {
 
     }
 
-    public TeamRocket death() {
+    public TeamRocket death(String[][] field) {
         NPC.delete();
+        field[getPosTR().getRow()][getPosTR().getCol()] = "block";
         return this;
     }
 

@@ -121,27 +121,23 @@ public class Player {
     }
 
     //aqui vai chekar a colisao e caso exista come
-    public boolean colision() {
+    public TeamRocket colision() {
 
         for (int i = 0; i < game.getLink1().size(); i++) {
             if (pos.getCol() + 1 == getTR(i).getPosTR().getCol() && pos.getRow() == getTR(i).getPosTR().getRow()) {
-                game.getLink1().remove(getTR(i).death());
-                return true;
+                return getTR(i);
             } else if (pos.getCol() - 1 == getTR(i).getPosTR().getCol() && pos.getRow() == getTR(i).getPosTR().getRow()) {
-                game.getLink1().remove(getTR(i).death());
-                return true;
+                return  getTR(i);
 
             } else if (pos.getRow() + 1 == getTR(i).getPosTR().getRow() && pos.getCol() == getTR(i).getPosTR().getCol()) {
-                game.getLink1().remove(getTR(i).death());
-                return true;
+                return getTR(i);
 
             } else if (pos.getRow() - 1 == getTR(i).getPosTR().getRow() && pos.getCol() == getTR(i).getPosTR().getCol()) {
-                game.getLink1().remove(getTR(i).death());
-                return true;
+                return getTR(i);
             }
 
         }
-        return false;
+        return null;
     }
 
     public boolean chooseElement(double x, double y) {

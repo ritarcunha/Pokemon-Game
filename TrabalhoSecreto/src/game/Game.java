@@ -108,20 +108,21 @@ public class Game {
 
 
     public void init() throws InterruptedException {    //ARADA TENS DE EXPLICAR ISTO! isto o q? A excepção. Ah oops. é so ignorar, o sleep pede para dar trow
-
+        TeamRocket tr;
         sound.play();
         p1.getSpritePlayer().draw();
         new PlayerHandler(p1);
         while (true) {
-            if (p1.colision()) {
+            tr = p1.colision();
+            if (tr != null) {
 
-                colision();
+                colision(tr);
 
             }
         }
     }
 
-    public void colision() throws InterruptedException {
+    public void colision(TeamRocket tr) throws InterruptedException {
         inBattle = true;
         Rectangle rectangle= new Rectangle(0,0,330,270);
         rectangle.setColor(new Color(255,255,255));
@@ -132,6 +133,7 @@ public class Game {
         pic1.draw();
         battle(p1, EnemyType.TEAMROCKET);
         Thread.sleep(1200);
+        link1.remove(tr.death(field));
         rectangle.delete();
         pic1.delete();
         inBattle = false;
@@ -152,8 +154,8 @@ public class Game {
 
         while (Plifes != 0 && TrLifes != 0) {
             chosing = true;
-           // while (chosing) {
-            //}
+            while (chosing) {
+            }
             System.out.println("ola2");
             PlayerElement = TeamRocket.getElement();
             TRElement = TeamRocket.getElement();

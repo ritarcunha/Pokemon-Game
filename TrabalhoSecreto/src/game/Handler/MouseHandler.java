@@ -40,7 +40,6 @@ public class MouseHandler implements org.academiadecodigo.simplegraphics.mouse.M
         }
         System.out.println("X " + mouseEvent.getX() + " Y " + mouseEvent.getY());
 
-
     }
 
     @Override
