@@ -17,24 +17,26 @@ import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.logging.Handler;
 
 public class Game {
 
     public final static int DISTANCE = 30;
     public static boolean inBattle = false;
+    public static boolean chosing = false;
+    public static boolean inMenu = true;
     private Sound sound = new Sound();
-
-
 
     //Player p11= new Player(new Position(0,0), "Mon",this);
 
     LinkedList<TeamRocket> link1 = new LinkedList<>();
-
-
-
+    private Player p1 = new Player(new Position(0, 0), "Mon", this);
 
     Picture pic1 = new Picture(0, 0, "resources/batalha.png");
+    Picture pic2 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text.png");
+    Picture pic3 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text (1).png");
 
+    Picture pic4 = new Picture(0, 0, "resources/BattleTimeCerta.png");
     private String[][] field = {{"block", "block", "block", "block", "block", "tree", "block", "block", "tree", "block", "block"},
             {"block", "tree", "block", "block", "block", "block", "block", "TR", "block", "block", "block"},
             {"block", "block", "block", "block", "TR", "block", "block", "block", "block", "block", "tree"},
@@ -63,7 +65,6 @@ public class Game {
                 if (field[i][j] == "tree") {//se tivesse com [i][j]== [1][1] ele iria estar a comparar um bloco com outro bloco
                     drawTree(j, i);
                 }
-
                 if (field[i][j] == "TR") {
                     drawTR(j, i);
 
@@ -79,8 +80,6 @@ public class Game {
         rectangle.setColor(Field.lIGHTBROWN);
         rectangle.fill();
         tree.draw();
-
-
     }
 
     public void drawFloor(int j, int i) {
@@ -93,129 +92,88 @@ public class Game {
         drawFloor(j, i);
         TeamRocket t1 = new Arada(new Position(j, i), "mastercoder"); //no construtor ja esta definido as propriedades e metodos de desenhar o retangilo
         link1.add(t1);
-
     }
 
-    /*public void drawText (){
-           Rectangle rectangle = new Rectangle(j * DISTANCE, i * DISTANCE, DISTANCE, DISTANCE);
-           rectangle.setColor(Color.WHITE);
-           rectangle.fill();
-           drawExclamationpoint();
-
-    } */
-
-       public void drawText (){  //vamos substituir por uma imagem com as letras do pokemon
-           
-              Text caixaTeste = new Text(150, 200,"Battle time!");
-              caixaTeste.grow(50,50);
-              caixaTeste.draw();
-
-       }
-
-
-
-    /*public void drawExclamationpoint() {
-        //Ellipse c1 = new Ellipse(250,300, 60, 60);
-       // c1.draw();
-        //c1.setColor(Color.BLUE);
-        //c1.fill();
-        Rectangle c2 = new Rectangle(260, 130 , DISTANCE+20, DISTANCE * 5);
-        c2.setColor(Color.BLUE);
-        c2.fill();
-    }*/
+    public void menu() throws InterruptedException {
+        new MouseHandler(p1);
+        while (inMenu) {
+            pic2.draw();
+            Thread.sleep(300);
+            pic3.draw();
+            pic2.delete();
+            Thread.sleep(300);
+            pic3.delete();
+        }
+    }
 
 
     public void init() throws InterruptedException {    //ARADA TENS DE EXPLICAR ISTO! isto o q? A excepção. Ah oops. é so ignorar, o sleep pede para dar trow
-        sound.play();
-        drawText();
-        Player p1= new Player(new Position(0,0), "Mon",this);
-        new PlayerHandler(p1);
-        new MouseHandler();
-        while (true) {
-               colision();
 
+        sound.play();
+        p1.getSpritePlayer().draw();
+        new PlayerHandler(p1);
+        while (true) {
+            if (p1.colision()) {
+
+                colision();
+
+            }
+        }
+    }
+
+    public void colision() throws InterruptedException {
+        inBattle = true;
+        Rectangle rectangle= new Rectangle(0,0,330,270);
+        rectangle.setColor(new Color(255,255,255));
+        rectangle.fill();
+        pic4.draw();
+        Thread.sleep(1200);//ponto de exclamaçao como animacao. Este sleep
+        pic4.delete();
+        pic1.draw();
+        battle(p1, EnemyType.TEAMROCKET);
+        Thread.sleep(1200);
+        rectangle.delete();
+        pic1.delete();
+        inBattle = false;
+
+
+    }
+
+    public LinkedList<TeamRocket> getLink1() {
+        return this.link1;
+    }
+
+    public void battle(Player player, EnemyType enemyType) throws InterruptedException {  //metodo da batalha
+        int Plifes = player.getNumberOfLifes();
+        int TrLifes = enemyType.getLifes();
+        BattleElements PlayerElement;
+        BattleElements TRElement;
+
+
+        while (Plifes != 0 && TrLifes != 0) {
+            chosing = true;
+           // while (chosing) {
+            //}
+            System.out.println("ola2");
+            PlayerElement = TeamRocket.getElement();
+            TRElement = TeamRocket.getElement();
+            if (PlayerElement.equals(BattleElements.WATER) && TRElement.equals(BattleElements.FIRE)) {
+                Plifes--;
+            } else if (PlayerElement.equals(BattleElements.FIRE) && TRElement.equals(BattleElements.EARTH)) {
+                Plifes--;
+            } else if (PlayerElement.equals(BattleElements.EARTH) && TRElement.equals(BattleElements.WATER)) {
+                Plifes--;
+            } else if (PlayerElement.equals(TRElement)) {
+                continue;
+            } else {
+                TrLifes--;
             }
 
         }
-
-
-    public void colision () throws InterruptedException{
-          Player p1= new Player(new Position(0,0), "Mon",this);
-          inBattle = true;
-          Thread.sleep(700);//ponto de exclamaçao como animacao. Este sleep
-          pic1.draw();
-          battle(p1, EnemyType.TEAMROCKET);
-          Thread.sleep(700);
-          pic1.delete();
-          inBattle = false;
-
-
+        if (Plifes < TrLifes) {
+            System.out.println("TR won the battle");
+        } else {
+            System.out.println("Player won the battle");
+        }
     }
-    public LinkedList<TeamRocket> getLink1 (){
-        return this.link1;
-    }
-        public void battle (Player player, EnemyType enemyType){  //metodo da batalha
-            int Plifes= player.getNumberOfLifes();
-            int TrLifes=enemyType.getLifes();
-            int rounds=0;
-            BattleElements    battleElement1 = TeamRocket.getElement();
-            BattleElements    battleElement2 =TeamRocket.getElement();
-
-
-            while(Plifes!=0 && TrLifes!=0){
-                battleElement1 = TeamRocket.getElement();
-                battleElement2 = TeamRocket.getElement();
-                if(battleElement1.equals(BattleElements.WATER) && battleElement2.equals(BattleElements.FIRE)){
-                    Plifes--;
-                }
-                else if(battleElement1.equals(BattleElements.FIRE) && battleElement2.equals(BattleElements.EARTH)){
-                    Plifes--;
-                }
-                else if(battleElement1.equals(BattleElements.EARTH) && battleElement2.equals(BattleElements.WATER)) {
-                   Plifes--;
-                }
-                else if(battleElement1.equals(battleElement2)){
-                        continue;
-                    }
-
-                else{
-                    TrLifes--;
-                }
-
-            }
-            if (Plifes<TrLifes){
-                System.out.println("TR won the battle");
-            }
-            else {
-                System.out.println("Player won the battle");
-            }
-
-
-
-
-
-
-
-    }
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

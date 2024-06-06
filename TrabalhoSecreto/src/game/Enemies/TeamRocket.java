@@ -14,31 +14,26 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class TeamRocket {
 
     private Position pos;
-    private final String  TR= "resources/TR1.png";
+    private final String TR = "resources/TR1.png";
     private Picture NPC;
-    private Rectangle rectNPC;
     private String npcName;
-    private final int NPCSIZE=Game.DISTANCE ;
+    private final int NPCSIZE = Game.DISTANCE;
     private BattleElements element;
 
     private int numberOfLifes;
 
 
-    public TeamRocket(Position pos,String npcName,int numberOfLifes){//quando criarmos uma instancia do TeamRocket temos de definir uma posição diferente (a outra ponta da grid)
+    public TeamRocket(Position pos, String npcName, int numberOfLifes) {//quando criarmos uma instancia do TeamRocket temos de definir uma posição diferente (a outra ponta da grid)
 
-        this.pos=pos;
-        this.npcName=npcName;
-        this.NPC=new Picture(pos.getCol() * Game.DISTANCE + ((Game.DISTANCE - NPCSIZE) / 2),
+        this.pos = pos;
+        this.npcName = npcName;
+        this.NPC = new Picture(pos.getCol() * Game.DISTANCE + ((Game.DISTANCE - NPCSIZE) / 2),
                 pos.getRow() * Game.DISTANCE + ((Game.DISTANCE - NPCSIZE) / 2),
                 TR);
-        this.rectNPC= new Rectangle(pos.getCol()*Game.DISTANCE+((Game.DISTANCE-NPCSIZE)/2),pos.getRow()*Game.DISTANCE+((Game.DISTANCE-NPCSIZE)/2),NPCSIZE,NPCSIZE);
-
-        rectNPC.setColor(new Color(210,180,140));
-        rectNPC.fill();
         NPC.draw();
-        this.element=element;
+        this.element = element;
 
-        this.numberOfLifes=numberOfLifes;
+        this.numberOfLifes = numberOfLifes;
     }
 
     public Position getPosTR() {
@@ -62,11 +57,9 @@ public class TeamRocket {
     }
 
     public TeamRocket death() {
-        rectNPC.delete();
+        NPC.delete();
         return this;
     }
-
-
 
 
 }

@@ -1,10 +1,13 @@
 package game.Player;
 
+import game.BattleElements;
 import game.Enemies.TeamRocket;
 import game.Game;
 import game.LinkedList;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
+import java.awt.event.MouseEvent;
 
 public class Player {
 
@@ -16,6 +19,7 @@ public class Player {
     private final String[] rightImages = {"resources/playerMoveChar/r1.png", "resources/playerMoveChar/r2.png"};
     private Position pos;
     private String name;
+    private BattleElements playerElement = BattleElements.NOELEMENT;
    // private Rectangle rectPlayer;
 
     private Game game;
@@ -30,7 +34,6 @@ public class Player {
         this.spritePlayer = new Picture(pos.getCol() * Game.DISTANCE + ((Game.DISTANCE - PLAYERSIZE) / 2),
                 pos.getRow() * Game.DISTANCE + ((Game.DISTANCE - PLAYERSIZE) / 2),
                 downImages[0]); // Initial image facing down
-        spritePlayer.draw();
         this.game = game;
         this.numberOfLifes = 3;
     }
@@ -43,6 +46,13 @@ public class Player {
         return this.numberOfLifes;
     }
 
+    public BattleElements getElement() {
+        return playerElement;
+    }
+
+    public Picture getSpritePlayer() {
+        return spritePlayer;
+    }
 
     public boolean checkMovement(Direction direction) {
         if (Game.inBattle == true)
@@ -134,9 +144,8 @@ public class Player {
         return false;
     }
 
-    public void battle(){
-
-
+    public boolean chooseElement(double x, double y) {
+        return true;
     }
 
 }

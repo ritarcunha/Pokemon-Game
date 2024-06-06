@@ -4,7 +4,8 @@ public enum BattleElements {
 
     FIRE,
     WATER,
-    EARTH
+    EARTH,
+    NOELEMENT
 }
 
 
