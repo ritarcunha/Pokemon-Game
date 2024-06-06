@@ -2,6 +2,7 @@ package game;
 
 import Background.Field;
 import game.Enemies.Arada;
+import game.Enemies.EnemyType;
 import game.Handler.MouseHandler;
 import game.Handler.PlayerHandler;
 import game.Player.Player;
@@ -32,7 +33,7 @@ public class Game {
 
 
 
-    Picture p1 = new Picture(0, 0, "resources/batalha.png");
+    Picture pic1 = new Picture(0, 0, "resources/batalha.png");
 
     private String[][] field = {{"block", "block", "block", "block", "block", "tree", "block", "block", "tree", "block", "block"},
             {"block", "tree", "block", "block", "block", "block", "block", "TR", "block", "block", "block"},
@@ -104,7 +105,7 @@ public class Game {
 
     } */
 
-       public void drawText (){
+       public void drawText (){  //vamos substituir por uma imagem com as letras do pokemon
            
               Text caixaTeste = new Text(150, 200,"Battle time!");
               caixaTeste.grow(50,50);
@@ -114,54 +115,80 @@ public class Game {
 
 
 
-    public void drawExclamationpoint() {
-        Ellipse c1 = new Ellipse(250,300, 60, 60);
-        c1.draw();
-        c1.setColor(Color.BLUE);
-        c1.fill();
+    /*public void drawExclamationpoint() {
+        //Ellipse c1 = new Ellipse(250,300, 60, 60);
+       // c1.draw();
+        //c1.setColor(Color.BLUE);
+        //c1.fill();
         Rectangle c2 = new Rectangle(260, 130 , DISTANCE+20, DISTANCE * 5);
         c2.setColor(Color.BLUE);
         c2.fill();
-    }
+    }*/
 
 
-    public void init() throws InterruptedException {
+    public void init() throws InterruptedException {    //ARADA TENS DE EXPLICAR ISTO! isto o q? A excepção. Ah oops. é so ignorar, o sleep pede para dar trow
         sound.play();
         drawText();
         Player p1= new Player(new Position(0,0), "Mon",this);
         new PlayerHandler(p1);
         new MouseHandler();
         while (true) {
-            if (p1.colision()) {
+               colision();
 
-                drawExclamationpoint();
-                Thread.sleep(700);//ponto de exclamaçao como animacao
-                inBattle = true;
-                this.p1.draw();
             }
 
         }
+
+
+    public void colision () throws InterruptedException{
+          Player p1= new Player(new Position(0,0), "Mon",this);
+          inBattle = true;
+          Thread.sleep(700);//ponto de exclamaçao como animacao. Este sleep
+          pic1.draw();
+          battle(p1, EnemyType.TEAMROCKET);
+          Thread.sleep(700);
+          pic1.delete();
+          inBattle = false;
+
+
     }
     public LinkedList<TeamRocket> getLink1 (){
         return this.link1;
     }
-
-
-
-
-
-
-
-
-        public void battle (BattleElements battleElement1, BattleElements battleElement2 ){
-            int victoriesP=0;
-            int victoriesTr=0;
+        public void battle (Player player, EnemyType enemyType){  //metodo da batalha
+            int Plifes= player.getNumberOfLifes();
+            int TrLifes=enemyType.getLifes();
             int rounds=0;
+            BattleElements    battleElement1 = TeamRocket.getElement();
+            BattleElements    battleElement2 =TeamRocket.getElement();
 
 
+            while(Plifes!=0 && TrLifes!=0){
+                battleElement1 = TeamRocket.getElement();
+                battleElement2 = TeamRocket.getElement();
+                if(battleElement1.equals(BattleElements.WATER) && battleElement2.equals(BattleElements.FIRE)){
+                    Plifes--;
+                }
+                else if(battleElement1.equals(BattleElements.FIRE) && battleElement2.equals(BattleElements.EARTH)){
+                    Plifes--;
+                }
+                else if(battleElement1.equals(BattleElements.EARTH) && battleElement2.equals(BattleElements.WATER)) {
+                   Plifes--;
+                }
+                else if(battleElement1.equals(battleElement2)){
+                        continue;
+                    }
 
-            while(rounds>3){
+                else{
+                    TrLifes--;
+                }
 
+            }
+            if (Plifes<TrLifes){
+                System.out.println("TR won the battle");
+            }
+            else {
+                System.out.println("Player won the battle");
             }
 
 

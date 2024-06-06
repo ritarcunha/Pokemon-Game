@@ -36,6 +36,8 @@ public class Player {
 
 
     public boolean checkMovement(Direction direction) {
+        if (Game.inBattle == true)
+            return false;
         switch (direction) {
             case RIGHT:
                 if (pos.getCol() < game.getField()[0].length - 1 && game.getField()[pos.getRow()][(pos.getCol() + 1)] == "block") {
