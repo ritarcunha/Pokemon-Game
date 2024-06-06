@@ -14,12 +14,16 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 
+import java.util.Collection;
+import java.util.Collections;
+
 public class Game {
 
     public final static int DISTANCE = 30;
+    public static boolean inBattle = false;
     private Sound sound = new Sound();
 
-    LinkedList link1 = new LinkedList();
+    LinkedList<TeamRocket> link1 = new LinkedList<>();
 
 
 
@@ -124,19 +128,18 @@ public class Game {
         Player p1= new Player(new Position(0,0), "Mon",this);
         new PlayerHandler(p1);
         new MouseHandler();
-
-
         while (true) {
             if (p1.colision()) {
 
                 drawExclamationpoint();
                 Thread.sleep(700);//ponto de exclamaçao como animacao
+                inBattle = true;
                 this.p1.draw();
             }
 
         }
     }
-    public LinkedList getLink1 (){
+    public LinkedList<TeamRocket> getLink1 (){
         return this.link1;
     }
 }

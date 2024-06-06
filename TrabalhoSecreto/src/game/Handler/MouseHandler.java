@@ -1,5 +1,6 @@
 package game.Handler;
 
+import game.Game;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.mouse.Mouse;
@@ -24,7 +25,8 @@ public class MouseHandler implements org.academiadecodigo.simplegraphics.mouse.M
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        System.out.println("Rato");
+        if(Game.inBattle)
+            System.out.println("Rato");
 
     }
 
