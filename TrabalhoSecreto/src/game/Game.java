@@ -21,7 +21,7 @@ import java.util.logging.Handler;
 
 public class Game {
 
-    public final static int DISTANCE = 30;
+    public final static int DISTANCE = 32;
     public static boolean inBattle = false;
     public static boolean chosing = false;
     public static boolean inMenu = true;
@@ -42,7 +42,7 @@ public class Game {
             {"block", "block", "block", "block", "TR", "block", "block", "block", "block", "block", "tree"},
             {"tree", "block", "block", "block", "block", "block", "tree", "block", "block", "block", "block"},
             {"block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "block", "block", "block", "block", "tree", "block", "block", "block", "block", "block"},
+            {"block", "monster", "block", "block", "block", "tree", "block", "block", "block", "block", "block"},
             {"block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
             {"block", "block", "TR", "block", "block", "tree", "block", "block", "tree", "block", "block"},
             {"block", "block", "block", "block", "block", "block", "block", "block", "tree", "block", "TR"}};
@@ -69,6 +69,9 @@ public class Game {
                     drawTR(j, i);
 
                 }
+                if (field[i][j] == "monster"){
+                    drawMonster(j,i);
+                }
 
             }
         }
@@ -88,10 +91,18 @@ public class Game {
         rectangle.fill();
     }
 
+
     public void drawTR(int j, int i) {
         drawFloor(j, i);
         TeamRocket t1 = new Arada(new Position(j, i), "mastercoder"); //no construtor ja esta definido as propriedades e metodos de desenhar o retangilo
         link1.add(t1);
+    }
+
+    public void drawMonster (int j, int i){
+        drawFloor(j, i);
+        TeamRocket m1 = new TeamRocket.Monster(new Position(j, i), "Mon");
+        link1.add(m1);
+
     }
 
     public void menu() throws InterruptedException {
@@ -123,7 +134,7 @@ public class Game {
 
     public void colision() throws InterruptedException {
         inBattle = true;
-        Rectangle rectangle= new Rectangle(0,0,330,270);
+        Rectangle rectangle= new Rectangle(0,0,field[0].length*DISTANCE,field.length*DISTANCE);
         rectangle.setColor(new Color(255,255,255));
         rectangle.fill();
         pic4.draw();

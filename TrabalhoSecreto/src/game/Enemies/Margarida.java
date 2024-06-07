@@ -1,4 +1,9 @@
 package game.Enemies;
 
-public class Margarida {
+import game.Player.Position;
+
+public class Margarida extends TeamRocket {
+    public Margarida(Position pos, String npcName) {
+        super(pos, npcName);
+    }
 }

@@ -23,7 +23,7 @@ public class TeamRocket {
     private int numberOfLifes;
 
 
-    public TeamRocket(Position pos, String npcName, int numberOfLifes) {//quando criarmos uma instancia do TeamRocket temos de definir uma posição diferente (a outra ponta da grid)
+    public TeamRocket(Position pos, String npcName) {//quando criarmos uma instancia do TeamRocket temos de definir uma posição diferente (a outra ponta da grid)
 
         this.pos = pos;
         this.npcName = npcName;
@@ -33,7 +33,7 @@ public class TeamRocket {
         NPC.draw();
         this.element = element;
 
-        this.numberOfLifes = numberOfLifes;
+        this.numberOfLifes = 3;
     }
 
     public Position getPosTR() {
@@ -59,6 +59,17 @@ public class TeamRocket {
     public TeamRocket death() {
         NPC.delete();
         return this;
+    }
+
+    public static class Monster extends TeamRocket{
+
+        private int numberOfLifes=1;
+
+        public Monster(Position pos, String npcName) {
+            super(pos, npcName);
+        }
+
+        //Faze-los aparecer na grid
     }
 
 
