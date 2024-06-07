@@ -35,11 +35,10 @@ public class MouseHandler implements org.academiadecodigo.simplegraphics.mouse.M
         if (Game.inBattle) {
             if (p1.chooseElement(mouseEvent.getX(), mouseEvent.getY())) {
                 System.out.println("ola");
-                Game.chosing = false;
+                p1.setChosing(false);
             }
         }
         System.out.println("X " + mouseEvent.getX() + " Y " + mouseEvent.getY());
-
 
     }
 
