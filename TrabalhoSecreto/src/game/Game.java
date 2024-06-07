@@ -132,7 +132,7 @@ public class Game {
         pic4.delete();
         pic1.draw();
         battle(p1, EnemyType.TEAMROCKET);
-        Thread.sleep(1200);
+        Thread.sleep(500);
         link1.remove(tr.death(field));
         rectangle.delete();
         pic1.delete();
@@ -153,8 +153,9 @@ public class Game {
 
 
         while (Plifes != 0 && TrLifes != 0) {
-            chosing = true;
-            while (chosing) {
+            player.setChosing(true);
+            while (player.getChosing()) {
+                Thread.sleep(100);
             }
             System.out.println("ola2");
             PlayerElement = TeamRocket.getElement();

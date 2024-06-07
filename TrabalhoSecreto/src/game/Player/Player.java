@@ -28,6 +28,8 @@ public class Player {
 
     private final int PLAYERSIZE = Game.DISTANCE * 3 / 2;
 
+    private boolean chosing = false;
+
     public Player(Position pos, String name, Game game) {
         this.pos = pos;
         this.name = name;
@@ -44,6 +46,14 @@ public class Player {
 
     public int getNumberOfLifes(){
         return this.numberOfLifes;
+    }
+
+    public boolean getChosing() {
+        return chosing;
+    }
+
+    public void setChosing(boolean chosing) {
+        this.chosing = chosing;
     }
 
     public BattleElements getElement() {
