@@ -33,13 +33,8 @@ public class Game {
     public static final Picture chooseYE= new Picture(picBatalha.getWidth() * 1/5,picBatalha.getHeight() * 3/4 ,"resources/ChooseYE.png");
     public static final Picture picWater = new Picture(picBatalha.getWidth() * 3/4, chooseYE.getMaxY(), "resources/Water.png");
     public static final Picture picFlame = new Picture(25,chooseYE.getMaxY() + 7,"resources/Flame.png");
-
-
-
-
-
-
     public static final Picture picLeaf = new Picture(picBatalha.getWidth()*2/5,chooseYE.getMaxY(),"resources/leaf.png" );
+    public static final Picture pok= new Picture( 15,15,"resources/Pokeball.png");
     Picture picMenu1 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text.png");
     Picture picMenu2 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text (1).png");
 
@@ -173,13 +168,14 @@ public class Game {
         Thread.sleep(1200);//ponto de exclamaçao como animacao. Este sleep
         picBattleTime.delete();
         picBatalha.draw();
-        battle(p1, tr);
+        battle(tr);
         Thread.sleep(1500);
         tr.deleteTR();
         link1.remove(tr.death(field));
         rectangle.delete();
         picBatalha.delete();
         inBattle = false;
+        tr.deleteMessage();
         p1.deletePlayerMessage();
 
 
@@ -192,31 +188,43 @@ public class Game {
         chooseYE.delete();
     }
 
+    public void drawElements(){
+        chooseYE.draw();
+        picWater.draw();
+        picFlame.draw();
+        picLeaf.draw();
+    }
+
+    public void drawLifes(TeamRocket teamRocket) {
+    pok.draw();
+    }
+
+    public void drawLifes() {
+
+    }
+
     public LinkedList<TeamRocket> getLink1() {
         return this.link1;
     }
 
-    public void battle(Player player, TeamRocket tr ) throws InterruptedException {  //metodo da batalha
-        int Plifes = player.getNumberOfLifes();
+    public void battle(TeamRocket tr ) throws InterruptedException {  //metodo da batalha
+        int Plifes = p1.getNumberOfLifes();
         int TrLifes = tr.getNumberOfLifes();
-        Picture pok1= new Picture( 20,20,"resources/Screenshot 2024-06-08 at 17.40.34.png");
-        pok1.draw();
+        drawLifes();
+        drawLifes(tr);
         BattleElements PlayerElement;
         BattleElements TRElement;
-
-        System.out.println("ola");
         while (Plifes != 0 && TrLifes != 0) {
-            player.setChosing(true);
-            chooseYE.draw();
-            picWater.draw();
-            picFlame.draw();
-            picLeaf.draw();
+            p1.setChosing(true);
+            drawElements();
             tr.drawTR();
             System.out.println(chooseYE.getMaxY() + 7);
-            while (player.getChosing()) {
+            while (p1.getChosing()) {
                 Thread.sleep(100);
             }
-            System.out.println("ola2");
+            deleteElements();
+            //mensagem de quem ganhou a ronda!!!
+            Thread.sleep(1500);
             System.out.println(PlayerElement = p1.getElement());
             TRElement = TeamRocket.getElement();
             if (PlayerElement.equals(BattleElements.WATER) && TRElement.equals(BattleElements.FIRE)) {
