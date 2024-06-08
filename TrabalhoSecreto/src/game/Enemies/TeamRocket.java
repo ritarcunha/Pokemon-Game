@@ -31,13 +31,7 @@ public class TeamRocket {
                 pos.getRow() * Game.DISTANCE + ((Game.DISTANCE - NPCSIZE) / 2),
                 TR);
         NPC.draw();
-<<<<<<< HEAD
-        this.element = element;
-
-        this.numberOfLifes = 3;
-=======
         this.numberOfLifes = numberOfLifes;
->>>>>>> 5f18d6734cff3d6c8a14bfa694912cb58c385ab9
     }
 
     public Position getPosTR() {

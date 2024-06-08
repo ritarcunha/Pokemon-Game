@@ -9,6 +9,7 @@
         <property name="main.class" value="Main" />
         <property name="build.dir" value="build" />
         <property name="etc.dir" value="etc"/>
+        <property name="resources.dir" value="${build.dir}/resources" />
         <property name="classes.dir" value="${build.dir}/classes" />
         <property name="lib.dir" value="lib" />
         <path id="classpath">
@@ -19,6 +20,9 @@
     <!-- Creates the build directories to hold JAR and Class files -->
     <target name="prepare" description="Creates the build and classes directories" depends="init">
         <mkdir dir="${classes.dir}" />
+        <copy todir="${resources.dir}">
+            <fileset dir="${images.dir}" includes="**" />
+        </copy>
     </target>
 
     <!-- Removes the build directory -->
