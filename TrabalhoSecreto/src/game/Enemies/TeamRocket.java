@@ -10,8 +10,9 @@ import game.Player.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+import org.omg.CORBA.StringHolder;
 
-public class TeamRocket {
+public abstract class TeamRocket {
 
     private Position pos;
     private final String TR = "resources/TR1.png";
@@ -23,16 +24,30 @@ public class TeamRocket {
     private int numberOfLifes;
 
 
-    public TeamRocket(Position pos, String npcName) {//quando criarmos uma instancia do TeamRocket temos de definir uma posição diferente (a outra ponta da grid)
+    public TeamRocket(Position pos, String npcName, int numberOfLifes, String tr) {//quando criarmos uma instancia do TeamRocket temos de definir uma posição diferente (a outra ponta da grid)
 
         this.pos = pos;
         this.npcName = npcName;
         this.NPC = new Picture(pos.getCol() * Game.DISTANCE + ((Game.DISTANCE - NPCSIZE) / 2),
                 pos.getRow() * Game.DISTANCE + ((Game.DISTANCE - NPCSIZE) / 2),
-                TR);
+                tr);
         NPC.draw();
+
         this.numberOfLifes = numberOfLifes;
+
     }
+
+    public abstract void drawTR();
+
+    public abstract void deleteTR();
+
+    public abstract void drawMessage();
+
+    public abstract void deleteMessage();
+
+
+
+
 
     public Position getPosTR() {
         return this.pos;
@@ -41,6 +56,7 @@ public class TeamRocket {
     public int getNumberOfLifes() {
         return this.numberOfLifes;
     }
+
 
     public static BattleElements getElement() {
         int randomNumber = (int) (Math.random() * 3) + 1;
@@ -54,6 +70,7 @@ public class TeamRocket {
 
     }
 
+
     public TeamRocket death(String[][] field) {
         NPC.delete();
         field[getPosTR().getRow()][getPosTR().getCol()] = "block";
@@ -62,10 +79,26 @@ public class TeamRocket {
 
     public static class Monster extends TeamRocket{
 
-        private int numberOfLifes=1;
+        public Picture message= new Picture(30, Game.chooseYE.getY(),"resources/MonsterWon.png");
 
-        public Monster(Position pos, String npcName) {
-            super(pos, npcName);
+        public Monster(Position pos, String npcName, String tr) {
+            super(pos, npcName, 1, tr);
+        }
+        public void drawTR(){
+            //battlePic.draw();
+        }
+
+        public void deleteTR(){
+            //battlePic.delete();
+        }
+
+        @Override
+        public void drawMessage() {
+           message.draw();
+        }
+
+        public void deleteMessage(){
+            message.delete();
         }
 
         //Faze-los aparecer na grid

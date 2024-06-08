@@ -4,12 +4,15 @@ import game.BattleElements;
 import game.Enemies.TeamRocket;
 import game.Game;
 import game.LinkedList;
+import jdk.nashorn.internal.runtime.logging.Loggable;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.awt.event.MouseEvent;
 
 public class Player {
+
+    public Picture message= new Picture(30, Game.chooseYE.getY(),"resources/PlayerWon.png");
 
     private Picture spritePlayer;
     private int animationFrame = 0;
@@ -151,7 +154,28 @@ public class Player {
     }
 
     public boolean chooseElement(double x, double y) {
-        return true;
+        if (x >= Game.picWater.getX() && x <= Game.picWater.getMaxX() && y >= Game.picWater.getY() && y <= Game.picWater.getMaxY()+35) {//condiçao que define o espaço onde vamos clickaar com o mouse (picture da water)
+            playerElement = BattleElements.WATER; //se o player clicar na pic agua, o playerElement passa a waterr
+            return true;
+        }
+        System.out.println("XL"+Game.picFlame.getX() + " XR"+ Game.picFlame.getMaxX() + " YL"+ Game.picFlame.getY() +" YR"+ Game.picFlame.getMaxY());
+        if (x>= Game.picFlame.getX() && x <=Game.picFlame.getMaxX() && y>= Game.picFlame.getY() && y<= Game.picFlame.getMaxY()+35){
+            playerElement= BattleElements.FIRE;
+            return true;
+        }
+        if (x>= Game.picLeaf.getX() && x <=Game.picLeaf.getMaxX() && y>= Game.picLeaf.getY() && y<= Game.picLeaf.getMaxY()+35) {
+            playerElement = BattleElements.EARTH;
+            return true;
+        }
+        return false;
+    }
+
+    public void drawPlayerMessage(){
+       message.draw();
+    }
+
+    public void deletePlayerMessage(){
+        message.delete();
     }
 
 }

@@ -1,23 +1,20 @@
 package game;
 
 import Background.Field;
-import game.Enemies.Arada;
-import game.Enemies.EnemyType;
+import game.Enemies.*;
 import game.Handler.MouseHandler;
 import game.Handler.PlayerHandler;
 import game.Player.Player;
 import game.Player.Position;
-import game.Enemies.TeamRocket;
 import game.Sound.Sound;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-import org.academiadecodigo.simplegraphics.graphics.Ellipse;
+import org.omg.PortableServer.THREAD_POLICY_ID;
+import sun.awt.windows.ThemeReader;
+import sun.nio.cs.ext.EUC_CN;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.logging.Handler;
+import java.util.TreeMap;
 
 public class Game {
 
@@ -32,20 +29,32 @@ public class Game {
     LinkedList<TeamRocket> link1 = new LinkedList<>();
     private Player p1 = new Player(new Position(0, 0), "Mon", this);
 
-    Picture pic1 = new Picture(0, 0, "resources/batalha.png");
-    Picture pic2 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text.png");
-    Picture pic3 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text (1).png");
+    public static final Picture picBatalha = new Picture(0, 0, "resources/batalha.png");
+    public static final Picture chooseYE= new Picture(picBatalha.getWidth() * 1/5,picBatalha.getHeight() * 3/4 ,"resources/ChooseYE.png");
+    public static final Picture picWater = new Picture(picBatalha.getWidth() * 3/4, chooseYE.getMaxY(), "resources/Water.png");
+    public static final Picture picFlame = new Picture(25,chooseYE.getMaxY() + 7,"resources/Flame.png");
 
-    Picture pic4 = new Picture(0, 0, "resources/BattleTimeCerta.png");
+
+
+
+
+
+    public static final Picture picLeaf = new Picture(picBatalha.getWidth()*2/5,chooseYE.getMaxY(),"resources/leaf.png" );
+    Picture picMenu1 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text.png");
+    Picture picMenu2 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text (1).png");
+
+
+
+    Picture picBattleTime = new Picture(0, 0, "resources/BattleTimeCerta.png");
     private String[][] field = {{"block", "block", "block", "block", "block", "tree", "block", "block", "tree", "block", "block"},
-            {"block", "tree", "block", "block", "block", "block", "block", "TR", "block", "block", "block"},
-            {"block", "block", "block", "block", "TR", "block", "block", "block", "block", "block", "tree"},
-            {"tree", "block", "block", "block", "block", "block", "tree", "block", "block", "block", "block"},
+            {"block", "tree", "block", "block", "block", "block", "block", "MA", "block", "block", "block"},
+            {"block", "block", "monster", "block", "AN", "block", "block", "block", "block", "block", "tree"},
+            {"tree", "block", "block", "block", "block", "block", "tree", "block", "block", "monster", "block"},
             {"block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "monster", "block", "block", "block", "tree", "block", "block", "block", "block", "block"},
+            {"block", "monster", "block", "block", "block", "tree", "monster", "block", "block", "block", "block"},
             {"block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "block", "TR", "block", "block", "tree", "block", "block", "tree", "block", "block"},
-            {"block", "block", "block", "block", "block", "block", "block", "block", "tree", "block", "TR"}};
+            {"block", "block", "ME", "block", "block", "tree", "block", "block", "tree", "block", "block"},
+            {"monster", "block", "block", "block", "block", "block", "block", "block", "tree", "block", "Arada"}};
     //criamos uma matriz para o campo de jogo
     //field.length- da me o numero de arrays da matriz e de rows
     //field[0].length- da me o numero de elemnetos de cada um dos array
@@ -65,12 +74,20 @@ public class Game {
                 if (field[i][j] == "tree") {//se tivesse com [i][j]== [1][1] ele iria estar a comparar um bloco com outro bloco
                     drawTree(j, i);
                 }
-                if (field[i][j] == "TR") {
-                    drawTR(j, i);
-
+                if (field[i][j] == "Arada") {
+                    drawTR(j, i,EnemyType.EU);
+                }
+                if (field[i][j] == "ME") {
+                    drawTR(j, i, EnemyType.MENDANHA);
+                }
+                if (field[i][j] == "MA") {
+                    drawTR(j, i, EnemyType.MARGARIDA);
+                }
+                if (field[i][j] == "AN") {
+                    drawTR(j, i, EnemyType.ANDREIA);
                 }
                 if (field[i][j] == "monster"){
-                    drawMonster(j,i);
+                    drawTR(j,i,EnemyType.MONSTER);
                 }
 
             }
@@ -92,28 +109,42 @@ public class Game {
     }
 
 
-    public void drawTR(int j, int i) {
+    public void drawTR(int j, int i, EnemyType enemyType) {
         drawFloor(j, i);
-        TeamRocket t1 = new Arada(new Position(j, i), "mastercoder"); //no construtor ja esta definido as propriedades e metodos de desenhar o retangilo
-        link1.add(t1);
+        switch (enemyType){
+            case EU:
+                TeamRocket t1 = new Arada(new Position(j, i), "mastercoder","resources/TR1.png"); //no construtor ja esta definido as propriedades e metodos de desenhar o retangilo
+            link1.add(t1);
+                break;
+            case ANDREIA:
+                TeamRocket t2= new Andreia (new Position(j, i), "mastercoder","resources/TR1.png") ;
+                link1.add(t2);
+                break;
+            case MENDANHA:
+                TeamRocket t3 = new Mendanha(new Position(j, i), "mastercoder", "resources/TR1.png") ;
+                link1.add(t3);
+                break;
+            case MONSTER:
+                TeamRocket t4 = new TeamRocket.Monster(new Position(j, i), "mastercoder","resources/D_Walk.png");
+                link1.add(t4);
+                break;
+            case MARGARIDA:
+                TeamRocket t5 = new Margarida(new Position(j, i), "mastercoder","resources/TR1.png");
+                link1.add(t5);
+                break;
+        }
     }
 
-    public void drawMonster (int j, int i){
-        drawFloor(j, i);
-        TeamRocket m1 = new TeamRocket.Monster(new Position(j, i), "Mon");
-        link1.add(m1);
-
-    }
 
     public void menu() throws InterruptedException {
         new MouseHandler(p1);
         while (inMenu) {
-            pic2.draw();
+            picMenu1.draw();
             Thread.sleep(300);
-            pic3.draw();
-            pic2.delete();
+            picMenu2.draw();
+            picMenu1.delete();
             Thread.sleep(300);
-            pic3.delete();
+            picMenu2.delete();
         }
     }
 
@@ -126,7 +157,7 @@ public class Game {
         while (true) {
             tr = p1.colision();
             if (tr != null) {
-
+                Thread.sleep(500);
                 colision(tr);
 
             }
@@ -138,38 +169,55 @@ public class Game {
         Rectangle rectangle= new Rectangle(0,0,field[0].length*DISTANCE,field.length*DISTANCE);
         rectangle.setColor(new Color(255,255,255));
         rectangle.fill();
-        pic4.draw();
+        picBattleTime.draw();
         Thread.sleep(1200);//ponto de exclamaçao como animacao. Este sleep
-        pic4.delete();
-        pic1.draw();
-        battle(p1, EnemyType.TEAMROCKET);
-        Thread.sleep(500);
+        picBattleTime.delete();
+        picBatalha.draw();
+        battle(p1, tr);
+        Thread.sleep(1500);
+        tr.deleteTR();
         link1.remove(tr.death(field));
         rectangle.delete();
-        pic1.delete();
+        picBatalha.delete();
         inBattle = false;
+        p1.deletePlayerMessage();
 
 
+    }
+
+    public void deleteElements (){
+        picLeaf.delete();
+        picFlame.delete();
+        picWater.delete();
+        chooseYE.delete();
     }
 
     public LinkedList<TeamRocket> getLink1() {
         return this.link1;
     }
 
-    public void battle(Player player, EnemyType enemyType) throws InterruptedException {  //metodo da batalha
+    public void battle(Player player, TeamRocket tr ) throws InterruptedException {  //metodo da batalha
         int Plifes = player.getNumberOfLifes();
-        int TrLifes = enemyType.getLifes();
+        int TrLifes = tr.getNumberOfLifes();
+        Picture pok1= new Picture( 20,20,"resources/Screenshot 2024-06-08 at 17.40.34.png");
+        pok1.draw();
         BattleElements PlayerElement;
         BattleElements TRElement;
 
-
+        System.out.println("ola");
         while (Plifes != 0 && TrLifes != 0) {
             player.setChosing(true);
+            chooseYE.draw();
+            picWater.draw();
+            picFlame.draw();
+            picLeaf.draw();
+            tr.drawTR();
+            System.out.println(chooseYE.getMaxY() + 7);
             while (player.getChosing()) {
                 Thread.sleep(100);
             }
             System.out.println("ola2");
-            PlayerElement = TeamRocket.getElement();
+            System.out.println(PlayerElement = p1.getElement());
             TRElement = TeamRocket.getElement();
             if (PlayerElement.equals(BattleElements.WATER) && TRElement.equals(BattleElements.FIRE)) {
                 Plifes--;
@@ -184,10 +232,12 @@ public class Game {
             }
 
         }
+        deleteElements();
         if (Plifes < TrLifes) {
-            System.out.println("TR won the battle");
+            tr.drawMessage();
+
         } else {
-            System.out.println("Player won the battle");
+            p1.drawPlayerMessage();
         }
     }
 }

@@ -1,10 +1,7 @@
 package game.Handler;
 
 import game.Game;
-import game.Methods;
 import game.Player.Player;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.mouse.Mouse;
 import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
 import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
@@ -19,27 +16,26 @@ public class MouseHandler implements org.academiadecodigo.simplegraphics.mouse.M
     public MouseHandler(Player p1) {
         mouse = new Mouse(this);
         this.p1 = p1;
-        createKeyboardEvents();
+        createMouseEvents();
     }
 
-    public void createKeyboardEvents() {
+    public void createMouseEvents() {
         MouseEvent mouseEventClick = new MouseEvent(0, 0, MouseEventType.MOUSE_CLICKED);
         mouse.addEventListener(MouseEventType.MOUSE_CLICKED);
     }
 
     @Override
-    public void mouseClicked(MouseEvent mouseEvent) {
-        if (Game.inMenu) {
+    public void mouseClicked(MouseEvent mouseEvent) {//mouseEvent guarda a posiçao em que o mouse foi clicado. Este metodo que e chamado quando clicas no rato
+        if (Game.inMenu) { // o metodo inMenu comeca a true e quando clicamos passa a false
             Game.inMenu = false;
         }
         if (Game.inBattle) {
-            if (p1.chooseElement(mouseEvent.getX(), mouseEvent.getY())) {
+            if (p1.chooseElement(mouseEvent.getX(), mouseEvent.getY())) {//
                 System.out.println("ola");
                 p1.setChosing(false);
             }
         }
         System.out.println("X " + mouseEvent.getX() + " Y " + mouseEvent.getY());
-
     }
 
     @Override
