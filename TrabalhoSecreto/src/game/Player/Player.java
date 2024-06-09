@@ -13,7 +13,7 @@ import java.awt.event.MouseEvent;
 
 public class Player implements Alive {
 
-    public Picture message= new Picture(30, Game.chooseYE.getY(),"resources/PlayerWon.png");
+    public Picture message = new Picture(30, Game.chooseYE.getY(), "resources/PlayerWon.png");
 
     private Picture spritePlayer;
     private int animationFrame = 0;
@@ -24,7 +24,7 @@ public class Player implements Alive {
     private Position pos;
     private String name;
     private BattleElements playerElement = BattleElements.NOELEMENT;
-   // private Rectangle rectPlayer;
+    // private Rectangle rectPlayer;
 
     private Game game;
 
@@ -34,7 +34,7 @@ public class Player implements Alive {
 
     private boolean chosing = false;
 
-    private Picture [] array =new Picture [5];
+    private Picture[] array = new Picture[3];
 
     public Player(Position pos, String name, Game game) {
         this.pos = pos;
@@ -50,7 +50,7 @@ public class Player implements Alive {
         return (TeamRocket) game.getLink1().get(i);
     }
 
-    public int getNumberOfLifes(){
+    public int getNumberOfLifes() {
         return this.numberOfLifes;
     }
 
@@ -99,6 +99,7 @@ public class Player implements Alive {
         }
         return false;
     }
+
     private void updateSprite(String[] images) {
         spritePlayer.load(images[animationFrame]);
         animationFrame = (animationFrame + 1) % images.length;
@@ -143,7 +144,7 @@ public class Player implements Alive {
             if (pos.getCol() + 1 == getTR(i).getPosTR().getCol() && pos.getRow() == getTR(i).getPosTR().getRow()) {
                 return getTR(i);
             } else if (pos.getCol() - 1 == getTR(i).getPosTR().getCol() && pos.getRow() == getTR(i).getPosTR().getRow()) {
-                return  getTR(i);
+                return getTR(i);
 
             } else if (pos.getRow() + 1 == getTR(i).getPosTR().getRow() && pos.getCol() == getTR(i).getPosTR().getCol()) {
                 return getTR(i);
@@ -157,49 +158,53 @@ public class Player implements Alive {
     }
 
     public boolean chooseElement(double x, double y) {
-        if (x >= Game.picWater.getX() && x <= Game.picWater.getMaxX() && y >= Game.picWater.getY() && y <= Game.picWater.getMaxY()+35) {//condiçao que define o espaço onde vamos clickaar com o mouse (picture da water)
+        if (x >= Game.picWater.getX() && x <= Game.picWater.getMaxX() && y >= Game.picWater.getY() && y <= Game.picWater.getMaxY() + 35) {//condiçao que define o espaço onde vamos clickaar com o mouse (picture da water)
             playerElement = BattleElements.WATER; //se o player clicar na pic agua, o playerElement passa a waterr
             return true;
         }
-        if (x>= Game.picFlame.getX() && x <=Game.picFlame.getMaxX() && y>= Game.picFlame.getY() && y<= Game.picFlame.getMaxY()+35){
-            playerElement= BattleElements.FIRE;
+        if (x >= Game.picFlame.getX() && x <= Game.picFlame.getMaxX() && y >= Game.picFlame.getY() && y <= Game.picFlame.getMaxY() + 35) {
+            playerElement = BattleElements.FIRE;
             return true;
         }
-        if (x>= Game.picLeaf.getX() && x <=Game.picLeaf.getMaxX() && y>= Game.picLeaf.getY() && y<= Game.picLeaf.getMaxY()+35) {
+        if (x >= Game.picLeaf.getX() && x <= Game.picLeaf.getMaxX() && y >= Game.picLeaf.getY() && y <= Game.picLeaf.getMaxY() + 35) {
             playerElement = BattleElements.EARTH;
             return true;
         }
         return false;
     }
 
-    public void drawPlayerMessage(){
-       message.draw();
+    public void drawPlayerMessage() {
+        message.draw();
     }
 
-    public void deletePlayerMessage(){
+    public void deletePlayerMessage() {
         message.delete();
     }
 
     @Override
     public void drawLifes() {
 
-        for (int i=0; i<getNumberOfLifes(); i++){
-            Picture pok= new Picture(i*40+Game.chooseYE.getMaxX()*1/2-20,Game.chooseYE.getY()-70,"resources/Pokeball.png" );// cada pokeball tem cerca de 32 de comprimento, por isso e so incrementar mais um bocadinho no x
-            array[i]=pok;
+        for (int i = 0; i < getNumberOfLifes(); i++) {
+            Picture pok = new Picture(i * 40 + Game.chooseYE.getMaxX() * 1 / 2 - 20, Game.chooseYE.getY() - 70, "resources/Pokeball.png");// cada pokeball tem cerca de 32 de comprimento, por isso e so incrementar mais um bocadinho no x
+            array[i] = pok;
             pok.draw();
         }
     }
 
     @Override
     public void deleteLifes() {
-        for (int i=getNumberOfLifes(); i>=0;i--){
-            //se player
-            System.out.println("apaguei uma vida");
-            array[i].delete();
+
+            array[numberOfLifes-1].delete();
+            numberOfLifes--;
 
         }
+
     }
 
 
-}
+
+
+
+
+
 

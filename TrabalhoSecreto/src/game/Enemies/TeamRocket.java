@@ -22,6 +22,8 @@ public abstract class TeamRocket implements Alive {
     private final int NPCSIZE = Game.DISTANCE;
     private BattleElements element;
 
+    private Game game;
+
     private int numberOfLifes;
 
     private Picture [] array;
@@ -37,6 +39,7 @@ public abstract class TeamRocket implements Alive {
 
         this.numberOfLifes = numberOfLifes;
         this.array=new Picture [getNumberOfLifes()];
+        this.game=game;
 
     }
 
@@ -60,11 +63,16 @@ public abstract class TeamRocket implements Alive {
     @Override
     public void deleteLifes() {
 
-        for (int i=getNumberOfLifes()-1; i>=0; i--){
-            System.out.println("Apaguei uma vida");
-            array[i].delete();
-        }
-    }
+
+                System.out.println("Apaguei uma vida");
+                array[numberOfLifes-1].delete();
+            numberOfLifes--;
+
+            }
+
+
+
+
 
     public Position getPosTR() {
         return this.pos;

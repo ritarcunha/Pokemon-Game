@@ -24,6 +24,12 @@ public class Game {
     public static boolean inMenu = true;
     private Sound sound = new Sound();
 
+   private boolean victoryPl;//o boolean da vitoria do player comeca a false
+
+
+
+
+
     //Player p11= new Player(new Position(0,0), "Mon",this);
 
     LinkedList<TeamRocket> link1 = new LinkedList<>();
@@ -58,6 +64,11 @@ public class Game {
 
     public String[][] getField() {
         return this.field;
+    }
+
+    public boolean getVictoryPl(){//começa a false
+
+        return victoryPl;
     }
 
 
@@ -225,15 +236,18 @@ public class Game {
             System.out.println(PlayerElement = p1.getElement());
             TRElement = TeamRocket.getElement();
             if (TRElement.equals(BattleElements.WATER) && PlayerElement.equals(BattleElements.FIRE)) {
-                Plifes--;
+                Plifes--;//Player perde
                 p1.deleteLifes();
+                victoryPl=false;
                 System.out.println("tr");
             } else if (TRElement.equals(BattleElements.FIRE) && PlayerElement.equals(BattleElements.EARTH)) {
                 Plifes--;
+                victoryPl=false;
                 p1.deleteLifes();
                 System.out.println("tr");
             } else if (TRElement.equals(BattleElements.EARTH) && PlayerElement.equals(BattleElements.WATER)) {
                 Plifes--;
+                //victoryPl=false;
                 p1.deleteLifes();
                 System.out.println("tr");
             } else if (PlayerElement.equals(TRElement)) {
@@ -241,6 +255,7 @@ public class Game {
                 continue;
             } else {
                 TrLifes--;
+                victoryPl=true;
                 tr.deleteLifes();
                 System.out.println("player");
             }
