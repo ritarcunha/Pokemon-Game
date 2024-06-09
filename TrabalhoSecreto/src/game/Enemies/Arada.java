@@ -7,6 +7,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Arada extends TeamRocket {
 
+    public Picture battlePic= new Picture(Game.picBatalha.getWidth() * 2/3,10,"resources/aradabatalha.png");
     public Picture message= new Picture(30, Game.chooseYE.getY(),"resources/Mr.AradaWon.png");
 
     public Arada(Position pos,String npcName, String tr){
@@ -14,12 +15,12 @@ public class Arada extends TeamRocket {
     }
 
     public void drawTR(){
-        //battlePic.draw();
+        battlePic.draw();
     }
 
     @Override
     public void deleteTR() {
-        //battlePic.delete();
+        battlePic.delete();
     }
 
     public void drawMessage(){
@@ -28,11 +29,6 @@ public class Arada extends TeamRocket {
 
     public void deleteMessage(){
         message.delete();
-    }
-
-    @Override
-    public void drawLifes() {
-
     }
 
     //vai ter mais vidas que os outros, coloquei 5

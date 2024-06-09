@@ -5,6 +5,7 @@ import java.awt.*;
 
 import Background.Field;
 import game.Alive;
+import game.Animation;
 import game.BattleElements;
 import game.Game;
 import game.Player.Position;
@@ -27,6 +28,7 @@ public abstract class TeamRocket implements Alive {
     private int numberOfLifes;
 
     private Picture [] array;
+    private Animation animations = new Animation(85,130);
 
     public TeamRocket(Position pos, String npcName, int numberOfLifes, String tr) {//quando criarmos uma instancia do TeamRocket temos de definir uma posição diferente (a outra ponta da grid)
 
@@ -64,14 +66,12 @@ public abstract class TeamRocket implements Alive {
     public void deleteLifes() {
 
 
+
                 System.out.println("Apaguei uma vida");
                 array[numberOfLifes-1].delete();
             numberOfLifes--;
 
             }
-
-
-
 
 
     public Position getPosTR() {
@@ -95,6 +95,19 @@ public abstract class TeamRocket implements Alive {
 
     }
 
+    public void attack(BattleElements battleElements) throws InterruptedException {
+        switch (battleElements) {
+            case FIRE:
+                animations.drawFire();
+                break;
+            case WATER:
+                animations.drawWater();
+                break;
+            case EARTH:
+                animations.drawGrass();
+                break;
+        }
+    }
 
     public TeamRocket death(String[][] field) {
         NPC.delete();
@@ -104,17 +117,18 @@ public abstract class TeamRocket implements Alive {
 
     public static class Monster extends TeamRocket{
 
+        public Picture battlePic= new Picture(Game.picBatalha.getWidth() * 2/3-5,10+20,"resources/dogBatalha.png");
         public Picture message= new Picture(30, Game.chooseYE.getY(),"resources/MonsterWon.png");
 
         public Monster(Position pos, String npcName, String tr) {
             super(pos, npcName, 1, tr);
         }
         public void drawTR(){
-            //battlePic.draw();
+            battlePic.draw();
         }
 
         public void deleteTR(){
-            //battlePic.delete();
+            battlePic.delete();
         }
 
         @Override
