@@ -30,5 +30,10 @@ public class Arada extends TeamRocket {
         message.delete();
     }
 
+    @Override
+    public void drawLifes() {
+
+    }
+
     //vai ter mais vidas que os outros, coloquei 5
 }

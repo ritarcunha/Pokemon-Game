@@ -60,6 +60,8 @@ public class Game {
         return this.field;
     }
 
+
+
     public void draw() {                             //field.length da me a quantidade de arrays
         for (int i = 0; i < field.length; i++) {         //Aqui percorremos cada fila da matriz (array dos arrays)
             for (int j = 0; j < field[i].length; j++) {        //Aqui percorremos cada posição da matriz (cada String do array)
@@ -168,11 +170,14 @@ public class Game {
         Thread.sleep(1200);//ponto de exclamaçao como animacao. Este sleep
         picBattleTime.delete();
         picBatalha.draw();
+        tr.drawLifes();
+        p1.drawLifes();
         battle(tr);
         Thread.sleep(1500);
         tr.deleteTR();
         link1.remove(tr.death(field));
         rectangle.delete();
+
         picBatalha.delete();
         inBattle = false;
         tr.deleteMessage();
@@ -195,13 +200,7 @@ public class Game {
         picLeaf.draw();
     }
 
-    public void drawLifes(TeamRocket teamRocket) {
-    pok.draw();
-    }
 
-    public void drawLifes() {
-
-    }
 
     public LinkedList<TeamRocket> getLink1() {
         return this.link1;
@@ -210,8 +209,6 @@ public class Game {
     public void battle(TeamRocket tr ) throws InterruptedException {  //metodo da batalha
         int Plifes = p1.getNumberOfLifes();
         int TrLifes = tr.getNumberOfLifes();
-        drawLifes();
-        drawLifes(tr);
         BattleElements PlayerElement;
         BattleElements TRElement;
         while (Plifes != 0 && TrLifes != 0) {
@@ -227,16 +224,25 @@ public class Game {
             Thread.sleep(1500);
             System.out.println(PlayerElement = p1.getElement());
             TRElement = TeamRocket.getElement();
-            if (PlayerElement.equals(BattleElements.WATER) && TRElement.equals(BattleElements.FIRE)) {
+            if (TRElement.equals(BattleElements.WATER) && PlayerElement.equals(BattleElements.FIRE)) {
                 Plifes--;
-            } else if (PlayerElement.equals(BattleElements.FIRE) && TRElement.equals(BattleElements.EARTH)) {
+                p1.deleteLifes();
+                System.out.println("tr");
+            } else if (TRElement.equals(BattleElements.FIRE) && PlayerElement.equals(BattleElements.EARTH)) {
                 Plifes--;
-            } else if (PlayerElement.equals(BattleElements.EARTH) && TRElement.equals(BattleElements.WATER)) {
+                p1.deleteLifes();
+                System.out.println("tr");
+            } else if (TRElement.equals(BattleElements.EARTH) && PlayerElement.equals(BattleElements.WATER)) {
                 Plifes--;
+                p1.deleteLifes();
+                System.out.println("tr");
             } else if (PlayerElement.equals(TRElement)) {
+                System.out.println("empate");
                 continue;
             } else {
                 TrLifes--;
+                tr.deleteLifes();
+                System.out.println("player");
             }
 
         }

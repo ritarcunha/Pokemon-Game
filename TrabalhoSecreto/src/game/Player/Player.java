@@ -1,5 +1,6 @@
 package game.Player;
 
+import game.Alive;
 import game.BattleElements;
 import game.Enemies.TeamRocket;
 import game.Game;
@@ -10,7 +11,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.awt.event.MouseEvent;
 
-public class Player {
+public class Player implements Alive {
 
     public Picture message= new Picture(30, Game.chooseYE.getY(),"resources/PlayerWon.png");
 
@@ -32,6 +33,8 @@ public class Player {
     private final int PLAYERSIZE = Game.DISTANCE * 3 / 2;
 
     private boolean chosing = false;
+
+    private Picture [] array =new Picture [5];
 
     public Player(Position pos, String name, Game game) {
         this.pos = pos;
@@ -158,7 +161,6 @@ public class Player {
             playerElement = BattleElements.WATER; //se o player clicar na pic agua, o playerElement passa a waterr
             return true;
         }
-        System.out.println("XL"+Game.picFlame.getX() + " XR"+ Game.picFlame.getMaxX() + " YL"+ Game.picFlame.getY() +" YR"+ Game.picFlame.getMaxY());
         if (x>= Game.picFlame.getX() && x <=Game.picFlame.getMaxX() && y>= Game.picFlame.getY() && y<= Game.picFlame.getMaxY()+35){
             playerElement= BattleElements.FIRE;
             return true;
@@ -177,6 +179,27 @@ public class Player {
     public void deletePlayerMessage(){
         message.delete();
     }
+
+    @Override
+    public void drawLifes() {
+
+        for (int i=0; i<getNumberOfLifes(); i++){
+            Picture pok= new Picture(i*40+Game.chooseYE.getMaxX()*1/2-20,Game.chooseYE.getY()-70,"resources/Pokeball.png" );// cada pokeball tem cerca de 32 de comprimento, por isso e so incrementar mais um bocadinho no x
+            array[i]=pok;
+            pok.draw();
+        }
+    }
+
+    @Override
+    public void deleteLifes() {
+        for (int i=getNumberOfLifes(); i>=0;i--){
+            //se player
+            System.out.println("apaguei uma vida");
+            array[i].delete();
+
+        }
+    }
+
 
 }
 

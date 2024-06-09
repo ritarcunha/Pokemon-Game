@@ -4,6 +4,7 @@ package game.Enemies;
 import java.awt.*;
 
 import Background.Field;
+import game.Alive;
 import game.BattleElements;
 import game.Game;
 import game.Player.Position;
@@ -12,7 +13,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.omg.CORBA.StringHolder;
 
-public abstract class TeamRocket {
+public abstract class TeamRocket implements Alive {
 
     private Position pos;
     private final String TR = "resources/TR1.png";
@@ -23,6 +24,7 @@ public abstract class TeamRocket {
 
     private int numberOfLifes;
 
+    private Picture [] array;
 
     public TeamRocket(Position pos, String npcName, int numberOfLifes, String tr) {//quando criarmos uma instancia do TeamRocket temos de definir uma posição diferente (a outra ponta da grid)
 
@@ -34,6 +36,7 @@ public abstract class TeamRocket {
         NPC.draw();
 
         this.numberOfLifes = numberOfLifes;
+        this.array=new Picture [getNumberOfLifes()];
 
     }
 
@@ -45,9 +48,23 @@ public abstract class TeamRocket {
 
     public abstract void deleteMessage();
 
+    public void drawLifes(){// como já definimos este metodo com tudo o que ha para fazer, os filhos nao precisam de ter o metodo na sua classe
 
+        for (int i=0; i<getNumberOfLifes(); i++){
+            Picture pok= new Picture(i*40+10,5,"resources/Pokeball.png" );// cada pokeball tem cerca de 32 de comprimento, por isso e so incrementar mais um bocadinho no x
+            array[i]=pok;
+            pok.draw();
+        }
+    }
 
+    @Override
+    public void deleteLifes() {
 
+        for (int i=getNumberOfLifes()-1; i>=0; i--){
+            System.out.println("Apaguei uma vida");
+            array[i].delete();
+        }
+    }
 
     public Position getPosTR() {
         return this.pos;
@@ -100,6 +117,8 @@ public abstract class TeamRocket {
         public void deleteMessage(){
             message.delete();
         }
+
+
 
         //Faze-los aparecer na grid
     }
