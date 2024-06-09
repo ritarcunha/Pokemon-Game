@@ -34,6 +34,13 @@ public class Player implements Alive {
 
     private Picture[] array = new Picture[3];
 
+    private int numberMaxLifes=3;
+
+
+
+
+
+
     public Player(Position pos, String name, Game game) {
         this.pos = pos;
         this.name = name;
@@ -196,6 +203,7 @@ public class Player implements Alive {
     @Override
     public void drawLifes() {
 
+        numberOfLifes=numberMaxLifes;// no player é que queremos que as vidas regressem ao original, no TR eles desaparecem
         for (int i = 0; i < getNumberOfLifes(); i++) {
             Picture pok = new Picture(i * 40 + Game.chooseYE.getMaxX() * 1 / 2 - 20, Game.chooseYE.getY() - 70, "resources/Pokeball.png");// cada pokeball tem cerca de 32 de comprimento, por isso e so incrementar mais um bocadinho no x
             array[i] = pok;
@@ -211,7 +219,16 @@ public class Player implements Alive {
 
         }
 
+    @Override
+    public void hideLifes() {
+        for(int i=0; i< numberOfLifes;i++){
+            array[i].delete();
+
+        }
     }
+
+
+}
 
 
 

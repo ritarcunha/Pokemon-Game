@@ -62,6 +62,8 @@ public abstract class TeamRocket implements Alive {
         }
     }
 
+
+
     @Override
     public void deleteLifes() {
 
@@ -106,6 +108,14 @@ public abstract class TeamRocket implements Alive {
             case EARTH:
                 animations.drawGrass();
                 break;
+        }
+    }
+
+    @Override
+    public void hideLifes() {
+        for(int i=0; i< numberOfLifes;i++){
+            array[i].delete();
+
         }
     }
 

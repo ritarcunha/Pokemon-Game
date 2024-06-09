@@ -19,14 +19,6 @@ public class Game {
     public static boolean inMenu = true;
     private Sound sound = new Sound();
 
-   private boolean victoryPl;//o boolean da vitoria do player comeca a false
-
-
-
-
-
-    //Player p11= new Player(new Position(0,0), "Mon",this);
-
     LinkedList<TeamRocket> link1 = new LinkedList<>();
     private Player p1 = new Player(new Position(0, 0), "Mon", this);
 
@@ -38,6 +30,7 @@ public class Game {
     public static final Picture pok= new Picture( 15,15,"resources/Pokeball.png");
     Picture picMenu1 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text.png");
     Picture picMenu2 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text (1).png");
+
 
 
 
@@ -61,10 +54,6 @@ public class Game {
         return this.field;
     }
 
-    public boolean getVictoryPl(){//começa a false
-
-        return victoryPl;
-    }
 
 
 
@@ -179,11 +168,12 @@ public class Game {
         tr.drawLifes();
         p1.drawLifes();
         battle(tr);
-        Thread.sleep(1500);
+        Thread.sleep(1500);//quando a batalha acaba
+        p1.hideLifes();
+        tr.hideLifes();
         tr.deleteTR();
         link1.remove(tr.death(field));
         rectangle.delete();
-
         picBatalha.delete();
         inBattle = false;
         tr.deleteMessage();
@@ -205,6 +195,8 @@ public class Game {
         picFlame.draw();
         picLeaf.draw();
     }
+
+
 
 
 
@@ -233,7 +225,7 @@ public class Game {
                 Plifes--;
                 tr.attack(TRElement);
                 p1.deleteLifes();
-                victoryPl=false;
+
                 System.out.println("tr");
             } else if (TRElement.equals(BattleElements.FIRE) && PlayerElement.equals(BattleElements.EARTH)) {
                 Plifes--;
