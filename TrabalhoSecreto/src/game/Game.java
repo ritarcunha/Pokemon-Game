@@ -12,12 +12,14 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
+    private Sound intro =new Sound();
+    private Sound world = new Sound();
+    private Sound battle =new Sound();
 
     public final static int DISTANCE = 32;
     public static boolean inBattle = false;
     public static boolean chosing = false;
     public static boolean inMenu = true;
-    private Sound sound = new Sound();
 
     LinkedList<TeamRocket> link1 = new LinkedList<>();
     private Player p1 = new Player(new Position(0, 0), "Mon", this);
@@ -133,6 +135,9 @@ public class Game {
 
 
     public void menu() throws InterruptedException {
+        intro.setFile("resources/intro.wav");
+        intro.play();
+        intro.loop();
         new MouseHandler(p1);
         while (inMenu) {
             picMenu1.draw();
@@ -146,8 +151,11 @@ public class Game {
 
 
     public void init() throws InterruptedException {    //ARADA TENS DE EXPLICAR ISTO! isto o q? A excepção. Ah oops. é so ignorar, o sleep pede para dar trow
+       intro.stop();
+       world.setFile("resources/world.wav");
+       world.play();
+       world.loop();
         TeamRocket tr;
-        sound.play();
         p1.getSpritePlayer().draw();
         new PlayerHandler(p1);
         while (true) {
@@ -161,6 +169,9 @@ public class Game {
     }
 
     public void colision(TeamRocket tr) throws InterruptedException {
+        world.stop();
+        battle.setFile("resources/battle.wav");
+        battle.loop();
         inBattle = true;
         Rectangle rectangle= new Rectangle(0,0,field[0].length*DISTANCE,field.length*DISTANCE);
         rectangle.setColor(new Color(255,255,255));
@@ -208,6 +219,7 @@ public class Game {
     }
 
     public void battle(TeamRocket tr ) throws InterruptedException {  //metodo da batalha
+
         int Plifes = p1.getNumberOfLifes();
         int TrLifes = tr.getNumberOfLifes();
         BattleElements PlayerElement;
@@ -272,6 +284,11 @@ public class Game {
 
         } else {
             p1.drawPlayerMessage();
+
         }
+        battle.stop();
+        world.play();
+        world.loop();
+
     }
 }
