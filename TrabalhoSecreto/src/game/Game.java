@@ -20,29 +20,23 @@ public class Game {
 
     public final static int DISTANCE = 32;
     public static boolean inBattle = false;
-    public static boolean chosing = false;
     public static boolean inMenu = true;
 
-    LinkedList<TeamRocket> link1 = new LinkedList<>();
-    private Player p1 = new Player(new Position(0, 0), "Mon", this);
 
     public static final Picture picBatalha = new Picture(0, 0, "resources/batalha.png");
     public static final Picture chooseYE= new Picture(picBatalha.getWidth() * 1/5,picBatalha.getHeight() * 3/4 ,"resources/ChooseYE.png");
     public static final Picture picWater = new Picture(picBatalha.getWidth() * 3/4, chooseYE.getMaxY(), "resources/Water.png");
     public static final Picture picFlame = new Picture(25,chooseYE.getMaxY() + 7,"resources/Flame.png");
     public static final Picture picLeaf = new Picture(picBatalha.getWidth()*2/5,chooseYE.getMaxY(),"resources/leaf.png" );
-    public static final Picture pok= new Picture( 15,15,"resources/Pokeball.png");
-    Picture picMenu1 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text.png");
-    Picture picMenu2 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text (1).png");
+    public static final Picture picMenu1 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text.png");
+    public static final Picture picMenu2 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text (1).png");
+    public static final Picture picRoundPlayerWon= new Picture(picBatalha.getWidth() * 1/5,picBatalha.getHeight() * 3/4,"resources/Playerwonthisround.png");
+    public static final Picture picRoundEnemyWon= new Picture(picBatalha.getWidth() * 1/5,picBatalha.getHeight() * 3/4,"resources/Enemywonthisround.png");
+    public static final Picture picRoundDraw= new Picture(picBatalha.getWidth() * 1/5,picBatalha.getHeight() * 3/4,"resources/Itsadraw.png");
+    public static final Picture picBattleTime = new Picture(70, 70, "resources/BattleTimeCerta.png");
 
-    Picture picRoundPlayerWon= new Picture(picBatalha.getWidth() * 1/5,picBatalha.getHeight() * 3/4,"resources/Playerwonthisround.png");
-    Picture picRoundEnemyWon= new Picture(picBatalha.getWidth() * 1/5,picBatalha.getHeight() * 3/4,"resources/Enemywonthisround.png");
-    Picture picRoundDraw= new Picture(picBatalha.getWidth() * 1/5,picBatalha.getHeight() * 3/4,"resources/Itsadraw.png");
-
-
-
-
-    Picture picBattleTime = new Picture(0, 0, "resources/BattleTimeCerta.png");
+    LinkedList<TeamRocket> link1 = new LinkedList<>();
+    private Player p1 = new Player(new Position(0, 0), "Mon", this);
     private String[][] field = {{"block", "block", "block", "block", "block", "tree", "block", "block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
             {"block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
             {"block", "block", "monster", "block", "AN", "block", "block", "block", "block", "block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
