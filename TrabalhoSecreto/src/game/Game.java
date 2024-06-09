@@ -10,11 +10,6 @@ import game.Sound.Sound;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-import org.omg.PortableServer.THREAD_POLICY_ID;
-import sun.awt.windows.ThemeReader;
-import sun.nio.cs.ext.EUC_CN;
-
-import java.util.TreeMap;
 
 public class Game {
 
@@ -221,19 +216,21 @@ public class Game {
             }
             deleteElements();
             //mensagem de quem ganhou a ronda!!!
-            Thread.sleep(1500);
             System.out.println(PlayerElement = p1.getElement());
             TRElement = TeamRocket.getElement();
             if (TRElement.equals(BattleElements.WATER) && PlayerElement.equals(BattleElements.FIRE)) {
                 Plifes--;
+                tr.attack(TRElement);
                 p1.deleteLifes();
                 System.out.println("tr");
             } else if (TRElement.equals(BattleElements.FIRE) && PlayerElement.equals(BattleElements.EARTH)) {
                 Plifes--;
+                tr.attack(TRElement);
                 p1.deleteLifes();
                 System.out.println("tr");
             } else if (TRElement.equals(BattleElements.EARTH) && PlayerElement.equals(BattleElements.WATER)) {
                 Plifes--;
+                tr.attack(TRElement);
                 p1.deleteLifes();
                 System.out.println("tr");
             } else if (PlayerElement.equals(TRElement)) {
@@ -241,6 +238,7 @@ public class Game {
                 continue;
             } else {
                 TrLifes--;
+                p1.attack(PlayerElement);
                 tr.deleteLifes();
                 System.out.println("player");
             }

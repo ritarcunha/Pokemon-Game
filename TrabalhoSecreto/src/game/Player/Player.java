@@ -1,10 +1,7 @@
 package game.Player;
 
-import game.Alive;
-import game.BattleElements;
+import game.*;
 import game.Enemies.TeamRocket;
-import game.Game;
-import game.LinkedList;
 import jdk.nashorn.internal.runtime.logging.Loggable;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -27,6 +24,7 @@ public class Player implements Alive {
    // private Rectangle rectPlayer;
 
     private Game game;
+    private Animation animations = new Animation(Game.picBatalha.getWidth() * 2/3,10);
 
     private int numberOfLifes;
 
@@ -180,6 +178,20 @@ public class Player implements Alive {
         message.delete();
     }
 
+    public void attack(BattleElements battleElements) throws InterruptedException {
+        switch (battleElements) {
+            case FIRE:
+                animations.drawFire();
+                break;
+            case WATER:
+                animations.drawWater();
+                break;
+            case EARTH:
+                animations.drawGrass();
+                break;
+        }
+    }
+
     @Override
     public void drawLifes() {
 
@@ -194,7 +206,7 @@ public class Player implements Alive {
     public void deleteLifes() {
         for (int i=getNumberOfLifes(); i>=0;i--){
             //se player
-            System.out.println("apaguei uma vida");
+            System.out.println("apaguei uma vida1");
             array[i].delete();
 
         }
