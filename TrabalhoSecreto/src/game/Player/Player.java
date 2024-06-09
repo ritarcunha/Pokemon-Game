@@ -13,6 +13,11 @@ public class Player implements Alive {
     public Picture message = new Picture(30, Game.chooseYE.getY(), "resources/PlayerWon.png");
 
     private Picture spritePlayer;
+
+    public void deleteTR() {
+        battlePic.delete();
+    }
+
     private int animationFrame = 0;
     private final String[] upImages = {"resources/playerMoveChar/u1.png", "resources/playerMoveChar/u2.png"};
     private final String[] downImages = {"resources/playerMoveChar/d1.png", "resources/playerMoveChar/d2.png"};
@@ -161,7 +166,12 @@ public class Player implements Alive {
         }
         return null;
     }
+    private Picture battlePic = new Picture(70,133, "resources/playerBattle.png");
 
+
+    public void drawPlayer(){
+        battlePic.draw();
+    }
     public boolean chooseElement(double x, double y) {
         if (x >= Game.picWater.getX() && x <= Game.picWater.getMaxX() && y >= Game.picWater.getY() && y <= Game.picWater.getMaxY() + 35) {//condiçao que define o espaço onde vamos clickaar com o mouse (picture da water)
             playerElement = BattleElements.WATER; //se o player clicar na pic agua, o playerElement passa a waterr

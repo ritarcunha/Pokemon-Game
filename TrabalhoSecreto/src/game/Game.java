@@ -178,8 +178,7 @@ public class Game {
         inBattle = false;
         tr.deleteMessage();
         p1.deletePlayerMessage();
-
-
+        p1.deleteTR();
     }
 
     public void deleteElements (){
@@ -213,6 +212,7 @@ public class Game {
             p1.setChosing(true);
             drawElements();
             tr.drawTR();
+            p1.drawPlayer();
             System.out.println(chooseYE.getMaxY() + 7);
             while (p1.getChosing()) {
                 Thread.sleep(100);
