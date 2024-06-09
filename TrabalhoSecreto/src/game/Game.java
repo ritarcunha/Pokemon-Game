@@ -11,6 +11,8 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import javax.swing.plaf.metal.MetalIconFactory;
+
 public class Game {
     private Sound intro =new Sound();
     private Sound world = new Sound();
@@ -41,15 +43,22 @@ public class Game {
 
 
     Picture picBattleTime = new Picture(0, 0, "resources/BattleTimeCerta.png");
-    private String[][] field = {{"block", "block", "block", "block", "block", "tree", "block", "block", "tree", "block", "block"},
-            {"block", "tree", "block", "block", "block", "block", "block", "MA", "block", "block", "block"},
-            {"block", "block", "monster", "block", "AN", "block", "block", "block", "block", "block", "tree"},
-            {"tree", "block", "block", "block", "block", "block", "tree", "block", "block", "monster", "block"},
-            {"block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "monster", "block", "block", "block", "tree", "monster", "block", "block", "block", "block"},
-            {"block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "block", "ME", "block", "block", "tree", "block", "block", "tree", "block", "block"},
-            {"monster", "block", "block", "block", "block", "block", "block", "block", "tree", "block", "Arada"}};
+    private String[][] field = {{"block", "block", "block", "block", "block", "tree", "block", "block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"block", "block", "monster", "block", "AN", "block", "block", "block", "block", "block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"tree", "block", "block", "block", "block", "block", "tree", "block", "block", "monster", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"block", "monster", "block", "block", "block", "tree", "monster", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"block", "block", "ME", "block", "block", "tree", "block", "block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"monster", "block", "block", "block", "block", "block", "block", "block", "tree", "block", "Arada", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+            {"block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+    };
     //criamos uma matriz para o campo de jogo
     //field.length- da me o numero de arrays da matriz e de rows
     //field[0].length- da me o numero de elemnetos de cada um dos array
@@ -93,17 +102,15 @@ public class Game {
     }
 
     public void drawTree(int j, int i) {
-        Rectangle rectangle = new Rectangle(j * DISTANCE, i * DISTANCE, DISTANCE, DISTANCE);
+        Picture rectangle = new Picture(j * DISTANCE, i * DISTANCE, "resources/Grass2.png");
         Picture tree = new Picture(j * DISTANCE, i * DISTANCE, "resources/tree.png");
-        rectangle.setColor(Field.lIGHTBROWN);
-        rectangle.fill();
+        rectangle.draw();
         tree.draw();
     }
 
     public void drawFloor(int j, int i) {
-        Rectangle rectangle = new Rectangle(j * DISTANCE, i * DISTANCE, DISTANCE, DISTANCE);
-        rectangle.setColor(Field.lIGHTBROWN);
-        rectangle.fill();
+        Picture rectangle = new Picture(j * DISTANCE, i * DISTANCE, "resources/Grass2.png");
+        rectangle.draw();
     }
 
 
@@ -225,10 +232,10 @@ public class Game {
         BattleElements PlayerElement;
         BattleElements TRElement;
         while (Plifes != 0 && TrLifes != 0) {
-            p1.setChosing(true);
             drawElements();
             tr.drawTR();
             p1.drawPlayer();
+            p1.setChosing(true);
             System.out.println(chooseYE.getMaxY() + 7);
             while (p1.getChosing()) {
                 Thread.sleep(100);
@@ -242,9 +249,8 @@ public class Game {
                 picRoundEnemyWon.draw();
                 Thread.sleep(1500);
                 tr.attack(TRElement);
-               picRoundEnemyWon.delete();
+                picRoundEnemyWon.delete();
                 p1.deleteLifes();
-                System.out.println("tr");
             } else if (TRElement.equals(BattleElements.FIRE) && PlayerElement.equals(BattleElements.EARTH)) {
                 Plifes--;
                 picRoundEnemyWon.draw();
@@ -252,7 +258,6 @@ public class Game {
                 tr.attack(TRElement);
                 picRoundEnemyWon.delete();
                 p1.deleteLifes();
-                System.out.println("tr");
             } else if (TRElement.equals(BattleElements.EARTH) && PlayerElement.equals(BattleElements.WATER)) {
                 Plifes--;
                 picRoundEnemyWon.draw();
@@ -260,9 +265,7 @@ public class Game {
                 tr.attack(TRElement);
                 picRoundEnemyWon.delete();
                 p1.deleteLifes();
-                System.out.println("tr");
             } else if (PlayerElement.equals(TRElement)) {
-                System.out.println("empate");
                 picRoundDraw.draw();
                 Thread.sleep(1500);
                 picRoundDraw.delete();
@@ -270,11 +273,10 @@ public class Game {
             } else {
                 TrLifes--;
                 picRoundPlayerWon.draw();
-                p1.attack(PlayerElement);
                 Thread.sleep(1500);
+                p1.attack(PlayerElement);
                 picRoundPlayerWon.delete();
                 tr.deleteLifes();
-                System.out.println("player");
             }
 
         }
