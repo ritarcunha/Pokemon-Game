@@ -31,6 +31,10 @@ public class Game {
     Picture picMenu1 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text.png");
     Picture picMenu2 = new Picture(0, 0, "resources/MASTERCODER-ezgif.com-added-text (1).png");
 
+    Picture picRoundPlayerWon= new Picture(picBatalha.getWidth() * 1/5,picBatalha.getHeight() * 3/4,"resources/Playerwonthisround.png");
+    Picture picRoundEnemyWon= new Picture(picBatalha.getWidth() * 1/5,picBatalha.getHeight() * 3/4,"resources/Enemywonthisround.png");
+    Picture picRoundDraw= new Picture(picBatalha.getWidth() * 1/5,picBatalha.getHeight() * 3/4,"resources/Itsadraw.png");
+
 
 
 
@@ -223,26 +227,40 @@ public class Game {
             TRElement = TeamRocket.getElement();
             if (TRElement.equals(BattleElements.WATER) && PlayerElement.equals(BattleElements.FIRE)) {
                 Plifes--;
+                picRoundEnemyWon.draw();
+                Thread.sleep(1500);
                 tr.attack(TRElement);
+               picRoundEnemyWon.delete();
                 p1.deleteLifes();
-
                 System.out.println("tr");
             } else if (TRElement.equals(BattleElements.FIRE) && PlayerElement.equals(BattleElements.EARTH)) {
                 Plifes--;
+                picRoundEnemyWon.draw();
+                Thread.sleep(1500);
                 tr.attack(TRElement);
+                picRoundEnemyWon.delete();
                 p1.deleteLifes();
                 System.out.println("tr");
             } else if (TRElement.equals(BattleElements.EARTH) && PlayerElement.equals(BattleElements.WATER)) {
                 Plifes--;
+                picRoundEnemyWon.draw();
+                Thread.sleep(1500);
                 tr.attack(TRElement);
+                picRoundEnemyWon.delete();
                 p1.deleteLifes();
                 System.out.println("tr");
             } else if (PlayerElement.equals(TRElement)) {
                 System.out.println("empate");
+                picRoundDraw.draw();
+                Thread.sleep(1500);
+                picRoundDraw.delete();
                 continue;
             } else {
                 TrLifes--;
+                picRoundPlayerWon.draw();
                 p1.attack(PlayerElement);
+                Thread.sleep(1500);
+                picRoundPlayerWon.delete();
                 tr.deleteLifes();
                 System.out.println("player");
             }
