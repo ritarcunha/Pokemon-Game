@@ -46,11 +46,11 @@ public class Game {
                                 {"TE", "TE", "TE", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "TE"},
                                 {"TE", "TE", "TE", "GR", "GR", "TE", "MR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "GR", "TE", "GR", "GR", "TE", "TE", "GR", "TE"},
                                 {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "GR", "GR", "TE"},
-                                {"GR", "GR", "GR", "GR", "ME", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "TE", "GR", "GR", "GR", "TE"},
+                                {"GR", "GR", "GR", "GR", "ME", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "GR", "GR", "GR", "TE"},
                                 {"TE", "TE", "TE", "GR", "GR", "TE", "GR", "GR", "TE", "GR", "AN", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "AR", "TE"},
                                 {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MR", "TE", "GR", "GR", "GR", "GR", "TE", "GR", "TE", "GR", "GR", "GR", "GR", "TE", "TE", "GR", "GR", "GR", "TE"},
                                 {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MA", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "TE", "TE", "GR", "GR", "TE"},
-                                {"TE", "TE", "TE", "GR", "TE", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "TE", "GR", "TE", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "TE", "GR", "TE"},
+                                {"TE", "TE", "TE", "GR", "TE", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "TE", "GR", "TE", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "GR", "TE"},
                                 {"TE", "TE", "TE", "GR", "MR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "TE"},
                                 {"TE", "TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
                                 {"TE", "TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
@@ -318,14 +318,15 @@ public class Game {
 
     private void gameOver(){
         Rectangle rectangle = new Rectangle(0,0,field[0].length*DISTANCE,field.length*DISTANCE);
+        rectangle.setColor(Color.WHITE);
         rectangle.fill();
         picGO.draw();
     }
 
     private void youWin(){
         Rectangle rectangle = new Rectangle(0,0,field[0].length*DISTANCE,field.length*DISTANCE);
+        rectangle.setColor(Color.WHITE);
         rectangle.fill();
         picYW.draw();
     }
-
 }

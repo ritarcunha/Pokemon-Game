@@ -2,8 +2,6 @@ package game.Player;
 
 import game.*;
 import game.Enemies.TeamRocket;
-import jdk.nashorn.internal.runtime.logging.Loggable;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.awt.event.MouseEvent;

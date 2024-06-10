@@ -7,7 +7,4 @@ public interface Alive {
     public void deleteLifes();
 
     public void hideLifes();
-
-
-
 }
