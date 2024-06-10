@@ -1,5 +1,6 @@
 package game.Handler;
 
+import game.Game;
 import game.Player.Player;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -62,7 +63,9 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
                     player.changeLeft();
                     break;
                 case KeyboardEvent.KEY_SPACE:
-                    System.exit(1);
+                    if (Game.inMenu) { // o metodo inMenu comeca a true e quando clicamos passa a false
+                        Game.inMenu = false;
+                    }
                     break;
                 case KeyboardEvent.KEY_UP:
                     player.changeUp();

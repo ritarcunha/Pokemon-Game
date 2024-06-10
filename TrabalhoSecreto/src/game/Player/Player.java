@@ -79,7 +79,7 @@ public class Player implements Alive {
     }
 
     public boolean checkMovement(Direction direction) {
-        if (Game.inBattle == true)
+        if (Game.inBattle || Game.inMenu)
             return false;
         switch (direction) {
             case RIGHT:

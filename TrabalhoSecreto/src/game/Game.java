@@ -45,15 +45,16 @@ public class Game {
                                 {"TE", "TE", "TE", "GR", "GR", "GR", "TE", "GR", "GR", "MR", "GR", "GR", "GR", "GR", "TE", "GR", "MR", "GR", "GR", "GR", "MR", "TE", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
                                 {"TE", "TE", "TE", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "TE"},
                                 {"TE", "TE", "TE", "GR", "GR", "TE", "MR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "GR", "TE", "GR", "GR", "TE", "TE", "GR", "TE"},
-                                {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "GR", "GR", "TE"},
+                                {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "TE", "MR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "GR", "GR", "TE"},
                                 {"GR", "GR", "GR", "GR", "ME", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "GR", "GR", "GR", "TE"},
                                 {"TE", "TE", "TE", "GR", "GR", "TE", "GR", "GR", "TE", "GR", "AN", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "AR", "TE"},
-                                {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MR", "TE", "GR", "GR", "GR", "GR", "TE", "GR", "TE", "GR", "GR", "GR", "GR", "TE", "TE", "GR", "GR", "GR", "TE"},
-                                {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MA", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "TE", "TE", "GR", "GR", "TE"},
+                                {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MR", "TE", "GR", "GR", "GR", "GR", "TE", "GR", "TE", "TE", "GR", "GR", "GR", "TE", "TE", "GR", "GR", "GR", "TE"},
+                                {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "MR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MA", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "TE", "TE", "GR", "GR", "TE"},
                                 {"TE", "TE", "TE", "GR", "TE", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "TE", "GR", "TE", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "GR", "TE"},
                                 {"TE", "TE", "TE", "GR", "MR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "TE"},
-                                {"TE", "TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
-                                {"TE", "TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
+                                {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MR", "GR", "GR", "GR", "MR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
+                                {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
+                                {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
                                 {"TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE"},
     };
     //criamos uma matriz para o campo de jogo
@@ -142,6 +143,7 @@ public class Game {
         intro.play();
         intro.loop();
         new MouseHandler(p1);
+        new PlayerHandler(p1);
         while (inMenu) {
             picMenu1.draw();
             Thread.sleep(300);
@@ -160,7 +162,6 @@ public class Game {
        world.loop();
         TeamRocket tr;
         p1.getSpritePlayer().draw();
-        new PlayerHandler(p1);
         while (true) {
             tr = p1.colision();
             if (tr != null) {
