@@ -1,6 +1,6 @@
 package game;
 
-import Background.Field;
+import Background.Colors;
 import game.Enemies.*;
 import game.Handler.MouseHandler;
 import game.Handler.PlayerHandler;
@@ -10,8 +10,6 @@ import game.Sound.Sound;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-
-import javax.swing.plaf.metal.MetalIconFactory;
 
 public class Game {
     private Sound intro =new Sound();
@@ -96,9 +94,8 @@ public class Game {
     }
 
     public void drawTree(int j, int i) {
-        Picture rectangle = new Picture(j * DISTANCE, i * DISTANCE, "resources/Grass2.png");
+        drawFloor(j,i);
         Picture tree = new Picture(j * DISTANCE, i * DISTANCE, "resources/tree.png");
-        rectangle.draw();
         tree.draw();
     }
 
@@ -169,7 +166,25 @@ public class Game {
         }
     }
 
+    public Rectangle[] hideStuff(){
+        Rectangle[] bejes = {new Rectangle(44,47,193,38),new Rectangle(44,85,190,5),new Rectangle(325,179,194,60)};
+        bejes[0].setColor(Colors.BATALHABEJE);
+        bejes[1].setColor(Colors.BATALHABEJE);
+        bejes[2].setColor(Colors.BATALHABEJE);
+        bejes[0].fill();
+        bejes[1].fill();
+        bejes[2].fill();
+        return bejes;
+    }
+
+    public void desHideStuff(Rectangle[] bejes){
+        for (Rectangle beje : bejes)
+            beje.delete();
+    }
+
     public void colision(TeamRocket tr) throws InterruptedException {
+        Rectangle[] bejes;
+
         world.stop();
         battle.setFile("resources/battle.wav");
         battle.loop();
@@ -181,6 +196,8 @@ public class Game {
         Thread.sleep(1200);//ponto de exclamaçao como animacao. Este sleep
         picBattleTime.delete();
         picBatalha.draw();
+        //hide name and stuff!!
+        bejes = hideStuff();
         tr.drawLifes();
         p1.drawLifes();
         battle(tr);
@@ -190,6 +207,7 @@ public class Game {
         tr.deleteTR();
         link1.remove(tr.death(field));
         rectangle.delete();
+        desHideStuff(bejes);
         picBatalha.delete();
         inBattle = false;
         tr.deleteMessage();

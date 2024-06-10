@@ -1,18 +1,12 @@
 
 package game.Enemies;
 
-import java.awt.*;
-
-import Background.Field;
 import game.Alive;
 import game.Animation;
 import game.BattleElements;
 import game.Game;
 import game.Player.Position;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-import org.omg.CORBA.StringHolder;
 
 public abstract class TeamRocket implements Alive {
 
@@ -56,7 +50,7 @@ public abstract class TeamRocket implements Alive {
     public void drawLifes(){// como já definimos este metodo com tudo o que ha para fazer, os filhos nao precisam de ter o metodo na sua classe
 
         for (int i=0; i<getNumberOfLifes(); i++){
-            Picture pok= new Picture(i*40+10,5,"resources/Pokeball.png" );// cada pokeball tem cerca de 32 de comprimento, por isso e so incrementar mais um bocadinho no x
+            Picture pok= new Picture(i*40+37,53,"resources/Pokeball.png" );// cada pokeball tem cerca de 32 de comprimento, por isso e so incrementar mais um bocadinho no x
             array[i]=pok;
             pok.draw();
         }

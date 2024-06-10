@@ -215,7 +215,7 @@ public class Player implements Alive {
 
         numberOfLifes=numberMaxLifes;// no player é que queremos que as vidas regressem ao original, no TR eles desaparecem
         for (int i = 0; i < getNumberOfLifes(); i++) {
-            Picture pok = new Picture(i * 40 + Game.chooseYE.getMaxX() * 1 / 2 - 20, Game.chooseYE.getY() - 70, "resources/Pokeball.png");// cada pokeball tem cerca de 32 de comprimento, por isso e so incrementar mais um bocadinho no x
+            Picture pok = new Picture(i * 40 + Game.chooseYE.getMaxX() * 1 / 2 + 145, Game.chooseYE.getY() - 85, "resources/Pokeball.png");// cada pokeball tem cerca de 32 de comprimento, por isso e so incrementar mais um bocadinho no x
             array[i] = pok;
             pok.draw();
         }

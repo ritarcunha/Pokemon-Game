@@ -43,6 +43,11 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
             keyboardEventDown.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
             keyboardEventDown.setKey(KeyboardEvent.KEY_DOWN);
             keyboard.addEventListener(keyboardEventDown);
+
+            KeyboardEvent keyboardEventQ = new KeyboardEvent();
+            keyboardEventQ.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            keyboardEventQ.setKey(KeyboardEvent.KEY_Q);
+            keyboard.addEventListener(keyboardEventQ);
         }
 
 
@@ -65,6 +70,8 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
                 case KeyboardEvent.KEY_DOWN:
                     player.changeDown();
                     break;
+                case KeyboardEvent.KEY_Q:
+                    System.exit(0);
             }
         }
 
