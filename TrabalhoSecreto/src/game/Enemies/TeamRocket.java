@@ -115,7 +115,7 @@ public abstract class TeamRocket implements Alive {
 
     public TeamRocket death(String[][] field) {
         NPC.delete();
-        field[getPosTR().getRow()][getPosTR().getCol()] = "block";
+        field[getPosTR().getRow()][getPosTR().getCol()] = "GR";
         return this;
     }
 

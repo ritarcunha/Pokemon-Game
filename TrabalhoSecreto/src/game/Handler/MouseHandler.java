@@ -34,8 +34,6 @@ public class MouseHandler implements org.academiadecodigo.simplegraphics.mouse.M
                 p1.setChosing(false);
             }
         }
-        System.out.println("X " + mouseEvent.getX() + " Y " + mouseEvent.getY());
-        System.out.println("red " + Game.picBatalha.getColorAt((int) mouseEvent.getX(), (int) mouseEvent.getY()).getRed() + " blue " + Game.picBatalha.getColorAt((int) mouseEvent.getX(), (int) mouseEvent.getY()).getBlue()+ " green " + Game.picBatalha.getColorAt((int) mouseEvent.getX(), (int) mouseEvent.getY()).getGreen());
     }
 
     @Override

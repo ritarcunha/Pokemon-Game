@@ -11,6 +11,8 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.io.CharArrayWriter;
+
 public class Game {
     private Sound intro =new Sound();
     private Sound world = new Sound();
@@ -31,6 +33,8 @@ public class Game {
     public static final Picture picRoundPlayerWon= new Picture(picBatalha.getWidth() * 1/5,picBatalha.getHeight() * 3/4,"resources/Playerwonthisround.png");
     public static final Picture picRoundEnemyWon= new Picture(picBatalha.getWidth() * 1/5,picBatalha.getHeight() * 3/4,"resources/Enemywonthisround.png");
     public static final Picture picRoundDraw= new Picture(picBatalha.getWidth() * 1/5,picBatalha.getHeight() * 3/4,"resources/Itsadraw.png");
+    public static final Picture picGO = new Picture(70,70,"resources/GO.png");
+    public static final Picture picYW = new Picture(70,70,"resources/YouWin.png");
     public static final Picture picBattleTime = new Picture(70, 70, "resources/BattleTimeCerta.png");
 
     LinkedList<TeamRocket> link1 = new LinkedList<>();
@@ -49,8 +53,8 @@ public class Game {
                                 {"TE", "TE", "TE", "GR", "TE", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "TE", "GR", "TE", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "TE", "GR", "TE"},
                                 {"TE", "TE", "TE", "GR", "MR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "TE"},
                                 {"TE", "TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
-            {"TE", "TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
-            {"TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE"},
+                                {"TE", "TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
+                                {"TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE"},
     };
     //criamos uma matriz para o campo de jogo
     //field.length- da me o numero de arrays da matriz e de rows
@@ -160,6 +164,7 @@ public class Game {
         while (true) {
             tr = p1.colision();
             if (tr != null) {
+                inBattle = true;
                 Thread.sleep(500);
                 colision(tr);
 
@@ -189,7 +194,6 @@ public class Game {
         world.stop();
         battle.setFile("resources/battle.wav");
         battle.loop();
-        inBattle = true;
         Rectangle rectangle= new Rectangle(0,0,field[0].length*DISTANCE,field.length*DISTANCE);
         rectangle.setColor(new Color(255,255,255));
         rectangle.fill();
@@ -201,7 +205,16 @@ public class Game {
         bejes = hideStuff();
         tr.drawLifes();
         p1.drawLifes();
-        battle(tr);
+        if (!battle(tr)){
+            gameOver();
+            Thread.sleep(60000);
+            System.exit(0);
+        }
+        else if(battle(tr) && tr instanceof Arada) {
+            youWin();
+            Thread.sleep(60000);
+            System.exit(0);
+        }
         Thread.sleep(1500);//quando a batalha acaba
         p1.hideLifes();
         tr.hideLifes();
@@ -230,15 +243,11 @@ public class Game {
         picLeaf.draw();
     }
 
-
-
-
-
     public LinkedList<TeamRocket> getLink1() {
         return this.link1;
     }
 
-    public void battle(TeamRocket tr ) throws InterruptedException {  //metodo da batalha
+    public boolean battle(TeamRocket tr ) throws InterruptedException {  //metodo da batalha
 
         int Plifes = p1.getNumberOfLifes();
         int TrLifes = tr.getNumberOfLifes();
@@ -254,7 +263,6 @@ public class Game {
                 Thread.sleep(100);
             }
             deleteElements();
-            //mensagem de quem ganhou a ronda!!!
             System.out.println(PlayerElement = p1.getElement());
             TRElement = TeamRocket.getElement();
             if (TRElement.equals(BattleElements.WATER) && PlayerElement.equals(BattleElements.FIRE)) {
@@ -291,19 +299,33 @@ public class Game {
                 picRoundPlayerWon.delete();
                 tr.deleteLifes();
             }
-
         }
         deleteElements();
         if (Plifes < TrLifes) {
             tr.drawMessage();
-
+            battle.stop();
+            world.play();
+            world.loop();
+            return false;
         } else {
             p1.drawPlayerMessage();
-
+            battle.stop();
+            world.play();
+            world.loop();
+            return true;
         }
-        battle.stop();
-        world.play();
-        world.loop();
-
     }
+
+    private void gameOver(){
+        Rectangle rectangle = new Rectangle(0,0,field[0].length*DISTANCE,field.length*DISTANCE);
+        rectangle.fill();
+        picGO.draw();
+    }
+
+    private void youWin(){
+        Rectangle rectangle = new Rectangle(0,0,field[0].length*DISTANCE,field.length*DISTANCE);
+        rectangle.fill();
+        picYW.draw();
+    }
+
 }
