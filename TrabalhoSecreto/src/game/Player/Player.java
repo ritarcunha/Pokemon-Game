@@ -85,23 +85,23 @@ public class Player implements Alive {
             return false;
         switch (direction) {
             case RIGHT:
-                if (pos.getCol() < game.getField()[0].length - 1 && game.getField()[pos.getRow()][(pos.getCol() + 1)] == "block") {
+                if (pos.getCol() < game.getField()[0].length - 1 && game.getField()[pos.getRow()][(pos.getCol() + 1)] == "GR") {
                     return true;
                 }
                 break;
             case LEFT:
-                if (pos.getCol() > 0 && game.getField()[pos.getRow()][pos.getCol() - 1] == "block") {
+                if (pos.getCol() > 0 && game.getField()[pos.getRow()][pos.getCol() - 1] == "GR") {
                     return true;
                 }
                 break;
             case UP:
-                if (pos.getRow() > 0 && game.getField()[pos.getRow() - 1][pos.getCol()] == "block") {
+                if (pos.getRow() > 0 && game.getField()[pos.getRow() - 1][pos.getCol()] == "GR") {
                     return true;
                 }
                 break;
 
             case DOWN:
-                if (pos.getRow() < game.getField().length - 1 && game.getField()[pos.getRow() + 1][pos.getCol()] == "block") {
+                if (pos.getRow() < game.getField().length - 1 && game.getField()[pos.getRow() + 1][pos.getCol()] == "GR") {
                     return true;
                 }
                 break;

@@ -34,22 +34,23 @@ public class Game {
     public static final Picture picBattleTime = new Picture(70, 70, "resources/BattleTimeCerta.png");
 
     LinkedList<TeamRocket> link1 = new LinkedList<>();
-    private Player p1 = new Player(new Position(0, 0), "Mon", this);
-    private String[][] field = {{"block", "block", "block", "block", "block", "tree", "block", "block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "block", "monster", "block", "AN", "block", "block", "block", "block", "block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"tree", "block", "block", "block", "block", "block", "tree", "block", "block", "monster", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "monster", "block", "block", "block", "tree", "monster", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "block", "ME", "block", "block", "tree", "block", "block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"monster", "block", "block", "block", "block", "block", "block", "block", "tree", "block", "Arada", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
-            {"block", "tree", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block", "block"},
+    private Player p1 = new Player(new Position(0, 7), "Mon", this);
+    private String[][] field = {{"TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE"},
+                                {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
+                                {"TE", "TE", "TE", "GR", "MR", "GR", "GR", "GR", "GR", "GR", "TE", "MR", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
+                                {"TE", "TE", "TE", "GR", "GR", "GR", "TE", "GR", "GR", "MR", "GR", "GR", "GR", "GR", "TE", "GR", "MR", "GR", "GR", "GR", "MR", "TE", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
+                                {"TE", "TE", "TE", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "TE"},
+                                {"TE", "TE", "TE", "GR", "GR", "TE", "MR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "GR", "TE", "GR", "GR", "TE", "TE", "GR", "TE"},
+                                {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "GR", "GR", "TE"},
+                                {"GR", "GR", "GR", "GR", "ME", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "TE", "GR", "GR", "GR", "TE"},
+                                {"TE", "TE", "TE", "GR", "GR", "TE", "GR", "GR", "TE", "GR", "AN", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "AR", "TE"},
+                                {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MR", "TE", "GR", "GR", "GR", "GR", "TE", "GR", "TE", "GR", "GR", "GR", "GR", "TE", "TE", "GR", "GR", "GR", "TE"},
+                                {"TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MA", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "TE", "TE", "GR", "GR", "TE"},
+                                {"TE", "TE", "TE", "GR", "TE", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "TE", "GR", "TE", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "TE", "GR", "TE"},
+                                {"TE", "TE", "TE", "GR", "MR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE", "TE"},
+                                {"TE", "TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "MR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
+            {"TE", "TE", "TE", "TE", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "GR", "TE", "TE"},
+            {"TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE", "TE"},
     };
     //criamos uma matriz para o campo de jogo
     //field.length- da me o numero de arrays da matriz e de rows
@@ -67,13 +68,13 @@ public class Game {
     public void draw() {                             //field.length da me a quantidade de arrays
         for (int i = 0; i < field.length; i++) {         //Aqui percorremos cada fila da matriz (array dos arrays)
             for (int j = 0; j < field[i].length; j++) {        //Aqui percorremos cada posição da matriz (cada String do array)
-                if (field[i][j] == "block") {
+                if (field[i][j] == "GR") {
                     drawFloor(j, i);
                 }
-                if (field[i][j] == "tree") {//se tivesse com [i][j]== [1][1] ele iria estar a comparar um bloco com outro bloco
+                if (field[i][j] == "TE") {//se tivesse com [i][j]== [1][1] ele iria estar a comparar um bloco com outro bloco
                     drawTree(j, i);
                 }
-                if (field[i][j] == "Arada") {
+                if (field[i][j] == "AR") {
                     drawTR(j, i,EnemyType.EU);
                 }
                 if (field[i][j] == "ME") {
@@ -85,7 +86,7 @@ public class Game {
                 if (field[i][j] == "AN") {
                     drawTR(j, i, EnemyType.ANDREIA);
                 }
-                if (field[i][j] == "monster"){
+                if (field[i][j] == "MR"){
                     drawTR(j,i,EnemyType.MONSTER);
                 }
 
@@ -95,8 +96,8 @@ public class Game {
 
     public void drawTree(int j, int i) {
         drawFloor(j,i);
-        Picture tree = new Picture(j * DISTANCE, i * DISTANCE, "resources/tree.png");
-        tree.draw();
+        Picture TE = new Picture(j * DISTANCE, i * DISTANCE, "resources/tree.png");
+        TE.draw();
     }
 
     public void drawFloor(int j, int i) {
