@@ -1,4 +1,4 @@
-#Pokémon Game
+Pokémon Game
 
 Description: Group project developed using java OOP and data structures.
 
